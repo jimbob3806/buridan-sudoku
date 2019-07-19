@@ -19,10 +19,32 @@ const useMainStyles = makeStyles({
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to fit
         // correctly at smaller sizes
-        padding: `${props.responsiveSize / 1.5}px 
-            ${props.responsiveSize / 2}px`,
+        padding: `${props.responsiveSize / 2.5}px 
+            ${props.responsiveSize / 3}px`,
+        margin: "auto",
+        justifyContent: "center"
+    }),
+    solverContainer: props => ({
+        display: "grid",
+        backgroundColor: variables.secondaryColor1,
+        height: props.responsiveSize * 13,
+        width: props.responsiveSize * 10,
         maxWidth: "600px",
-        margin: "auto"
+        placeItems: "center center",
+        margin: "auto",
+        // gridTemplateColumns: "50px 300px 300px 300px 50px",
+        // gridTemplateRows: "60px 80px 720px 80px 60px",
+        gridTemplateColumns: "4% 55% 34% 4%",
+        gridTemplateRows: "4% 8% 72% 8% 4%",
+        gridColumnGap: "1%",
+        gridRowGap: "1%",
+        gridTemplateAreas: `
+            ".  .           .           ."
+            ".  operation   input       ."
+            ".  sudoku      sudoku      ."
+            ".  number      number      ."
+            ".  .           .           ."
+        `
     }),
 
     // Styling applied to all buttonGroups
@@ -54,20 +76,23 @@ const useMainStyles = makeStyles({
     // Custom styling specific to each button group
     numberSelector: props => ({
         // width: props.responsiveSize * 9
+        gridArea: "number",
+        //placeSelf: "center stretch"
     }),
     operationSelector: props => ({
-        float: "left"
+        gridArea: "operation",
+        // float: "left"
     }),
     inputSelector: props => ({
-        float: "right"
+        gridArea: "input",
+        // float: "right"
     }),
 
     // Other styling
     sudoku: props => ({
         // width: props.responsiveSize * 9,
         // height: props.responsiveSize * 9,
-        display: "flex",
-        justifyContent: "center"
+        gridArea: "sudoku"
     }),
     dialog: props => ({
         display: "flex",

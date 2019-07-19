@@ -111,7 +111,7 @@ const SudokuGrid = props => {
 
     // Component render JSX
     return (
-        <div>
+        <div className = {styles.sudoku}>
             {rows}
         </div>
     )

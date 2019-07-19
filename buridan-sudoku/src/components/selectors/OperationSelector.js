@@ -41,7 +41,7 @@ const OperationSelector = props => {
 
             <Button 
                 onClick = {() => mainContext.handleRemoveCell()}
-                className = {`${styles.button} ${styles.operations}`}
+                className = {styles.button}
             >
                 <Tooltip title = "Remove a cell (R)">
                     <Remove className = {styles.button} />
@@ -50,7 +50,7 @@ const OperationSelector = props => {
             
             <Button 
                 onClick = {() => mainContext.handleGiveAnswer()}
-                className = {`${styles.button} ${styles.operations}`}
+                className = {styles.button}
             >
                 <Tooltip title = "See an answer (F)">
                     <Visibility />
@@ -59,7 +59,7 @@ const OperationSelector = props => {
             
             <Button 
                 onClick = {() => mainContext.handleCheck()}
-                className = {`${styles.button} ${styles.operations}`}
+                className = {styles.button}
             >
                 <Tooltip title = "Check your answers (C)">
                     <Check />
@@ -69,7 +69,7 @@ const OperationSelector = props => {
             <Button 
                 onClick = {() => mainContext.setCurrentDialog(
                     mainContext.dialogs.RESTART)}
-                className = {`${styles.button} ${styles.operations}`}
+                className = {styles.button}
             >
                 <Tooltip title = "Restart (Z)">
                     <Replay className = {styles.button} />
@@ -79,7 +79,7 @@ const OperationSelector = props => {
             <Button 
                 onClick = {() => mainContext.setCurrentDialog(
                     mainContext.dialogs.POPULATE_CANDIDATES)}
-                className = {`${styles.button} ${styles.operations}`}
+                className = {styles.button}
             >
                 <Tooltip title = "Add all candidates (X)">
                     <Apps className = {styles.button} />

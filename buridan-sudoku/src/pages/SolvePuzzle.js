@@ -43,29 +43,29 @@ const SolvePuzzle = props => {
 
     // Component render JSX
     return (
-        <Paper>
-            <GridList cellHeight = {mainContext.responsiveSize} spacing = {5}>
+        <Paper className = {styles.solverContainer}>
+            {/*<GridList cellHeight = {mainContext.responsiveSize} spacing = {5}>
 
-                <GridListTile cols = {1.5} rows = {1}>
+                <GridListTile cols = {1.5} rows = {1}>*/}
                     <OperationSelector styles = {styles} />
                     <CheckDialog />
                     <RestartDialog />
                     <PopulateDialog />                    
-                </GridListTile>
+                {/*</GridListTile>
 
-                <GridListTile cols = {0.5} rows = {1}>
+                <GridListTile cols = {0.5} rows = {1}>*/}
                     <InputSelector styles = {styles} />
-                </GridListTile>
+                {/*</GridListTile>
 
-                <GridListTile cols = {2} rows = {9}>
-                    <SudokuGrid styles = {styles} />            
-                </GridListTile>
+                <GridListTile cols = {2} rows = {9}>*/}
+                    <SudokuGrid styles = {styles} />
+                {/*</GridListTile>
 
-                <GridListTile cols = {2} rows = {1}>
+                <GridListTile cols = {2} rows = {1}>*/}
                     <NumberSelector styles = {styles} />
-                </GridListTile>
+                {/*</GridListTile>
 
-            </GridList>
+            </GridList>*/}
         </Paper>
     )
 }
