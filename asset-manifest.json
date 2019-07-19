@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/buridan-sudoku/static/css/main.5ef8425e.chunk.css",
+    "main.js": "/buridan-sudoku/static/js/main.87fa6f01.chunk.js",
+    "main.js.map": "/buridan-sudoku/static/js/main.87fa6f01.chunk.js.map",
+    "runtime~main.js": "/buridan-sudoku/static/js/runtime~main.1943f373.js",
+    "runtime~main.js.map": "/buridan-sudoku/static/js/runtime~main.1943f373.js.map",
+    "static/css/2.48a41c52.chunk.css": "/buridan-sudoku/static/css/2.48a41c52.chunk.css",
+    "static/js/2.af434bba.chunk.js": "/buridan-sudoku/static/js/2.af434bba.chunk.js",
+    "static/js/2.af434bba.chunk.js.map": "/buridan-sudoku/static/js/2.af434bba.chunk.js.map",
+    "index.html": "/buridan-sudoku/index.html",
+    "precache-manifest.f42440055432a4d2e2b43d24a883f07a.js": "/buridan-sudoku/precache-manifest.f42440055432a4d2e2b43d24a883f07a.js",
+    "service-worker.js": "/buridan-sudoku/service-worker.js",
+    "static/css/2.48a41c52.chunk.css.map": "/buridan-sudoku/static/css/2.48a41c52.chunk.css.map",
+    "static/css/main.5ef8425e.chunk.css.map": "/buridan-sudoku/static/css/main.5ef8425e.chunk.css.map",
+    "static/media/index.css": "/buridan-sudoku/static/media/roboto-latin-900italic.bc833e72.woff"
+  }
+}
