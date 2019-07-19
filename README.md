@@ -36,6 +36,9 @@ and Yahoo.
 #### robots.txt pattern matching
  * \* character is a wildcard that represents any sequence of characters
  * $ character matches the end of the URL
-
-Find out more here (https://support.google.com/webmasters/answer/6062596?hl=en) 
+* Find out more here (https://support.google.com/webmasters/answer/6062596?hl=en) 
 and here (https://moz.com/learn/seo/robotstxt)
+
+## sitemap.xml
+
+* Find out more here (https://www.sitemaps.org/protocol.html)

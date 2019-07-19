@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3c97b9021d671a3013a6b80aa6cf1fc",
+    "revision": "06ca6a638aaaf81d39ea7ed9d9cf1fae",
     "url": "/buridan-sudoku/index.html"
   },
   {
