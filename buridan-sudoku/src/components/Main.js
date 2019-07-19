@@ -18,7 +18,6 @@ import {
     import MainContext from "../context/Main"
     // Components
     import {
-        About,
         Instructions,
         LoadPuzzle,
         SetPuzzle,
@@ -65,10 +64,6 @@ const Main = () => {
 
                 <Route path = "/solve">
                     <SolvePuzzle styles = {styles} />
-                </Route>
-
-                <Route path = "/about">
-                    <About styles = {styles} />
                 </Route>
 
                 <Route path = "/instructions">

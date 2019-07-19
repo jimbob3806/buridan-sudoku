@@ -82,16 +82,12 @@ const SudokuGrid = props => {
             )
         }  else {
             // Permanent values of puzzle that must not be changed - hence no
-            // onClick function, as client will not interact here.
+            // onClick function, as client will not interact here. Also no
+            // selected cell, as client will not interact here
             return (
                 <div  key = {index} className = {`
                     ${styles.puzzle} 
                     ${isOddBox(index) ? styles.light : styles.dark}
-                    ${
-                        mainContext.selectedCell === index ? 
-                            styles.selected : 
-                            null
-                    }
                 `}>
                     {cell}
                 </div>

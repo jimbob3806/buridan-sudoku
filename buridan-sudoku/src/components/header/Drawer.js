@@ -1,5 +1,7 @@
 //General imports
-import React from "react"
+import React, {
+    useContext
+} from "react"
 /*eslint-disable no-unused-vars*/
 import { 
     /*Router must be imported for its functionality to work, even though the 
@@ -9,12 +11,14 @@ import {
 /*eslint-enable no-unused-vars*/
 
 //Material-ui imports
-import { 
-    List
+import {
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText
 } from "@material-ui/core"
 import {
     Help,
-    Info,
     Create,
     Folder,
     GridOn
@@ -22,16 +26,21 @@ import {
 
 // Own imports 
     //Context & States
+    import HeaderContext from "../../context/Header"
     // Components
-    import {
-        DrawerItem
-    } from "../exports"
     // Hooks
     // Style hooks
 
 const HeaderDrawer = props => {
+    // Context & state
+    const headerContext = useContext(HeaderContext)
+
     // Styles
     const styles = props.styles
+
+    // Helper functions
+    const linkStyle = (headerContext.pathLoaded() === props.path) ? 
+        styles.drawerItemActive : styles.drawerItem
     
     // Component render JSX
     return(
@@ -41,37 +50,79 @@ const HeaderDrawer = props => {
             <List>
 
                 <Link to = "/solve" className = {styles.drawerItem}>
-                    <DrawerItem text = "Solve" path = "/solve" 
-                        styles = {styles}>
-                        <GridOn /> {/*Icon to be displayed next to link*/}
-                    </DrawerItem>
+                    <ListItem 
+                        button = {true}
+                        className = {linkStyle}
+                        onClick = {() => { 
+                            headerContext.setIsDrawerOpen(false) 
+                        }}
+                    >
+
+                        {/*Icon to be displayed next to link*/}
+                        <ListItemIcon className = {linkStyle}> 
+                            <GridOn /> 
+                        </ListItemIcon>
+
+                        <ListItemText primary = "Solve" />
+
+                    </ListItem>
                 </Link>
 
                 <Link to = "/load" className = {styles.drawerItem}>
-                    <DrawerItem text = "Load" path = "/load" styles = {styles}>
-                        <Folder /> {/*Icon to be displayed next to link*/}
-                    </DrawerItem>
+                    <ListItem 
+                        button = {true}
+                        className = {linkStyle}
+                        onClick = {() => { 
+                            headerContext.setIsDrawerOpen(false) 
+                        }}
+                    >
+
+                        {/*Icon to be displayed next to link*/}
+                        <ListItemIcon className = {linkStyle}> 
+                            <Folder />
+                        </ListItemIcon>
+
+                        <ListItemText primary = "Solve" />
+
+                    </ListItem>
                 </Link>
 
                 <Link to = "/set" className = {styles.drawerItem}>
-                    <DrawerItem text = "Set Puzzle" path = "/set" 
-                        styles = {styles}>
-                        <Create /> {/*Icon to be displayed next to link*/}
-                    </DrawerItem>
+                    <ListItem 
+                        button = {true}
+                        className = {linkStyle}
+                        onClick = {() => { 
+                            headerContext.setIsDrawerOpen(false) 
+                        }}
+                    >
+
+                        {/*Icon to be displayed next to link*/}
+                        <ListItemIcon className = {linkStyle}> 
+                            <Create /> 
+                        </ListItemIcon>
+
+                        <ListItemText primary = "Solve" />
+
+                    </ListItem>
                 </Link>
 
                 <Link to = "/instructions" className = {styles.drawerItem}>
-                    <DrawerItem text = "Instructions" path = "/instructions" 
-                        styles = {styles}>
-                        <Help /> {/*Icon to be displayed next to link*/}
-                    </DrawerItem>
-                </Link>
+                    <ListItem 
+                        button = {true}
+                        className = {linkStyle}
+                        onClick = {() => { 
+                            headerContext.setIsDrawerOpen(false) 
+                        }}
+                    >
 
-                <Link to = "/about" className = {styles.drawerItem}>
-                    <DrawerItem text = "About" path = "/about" 
-                        styles = {styles}>
-                        <Info /> {/*Icon to be displayed next to link*/}
-                    </DrawerItem>
+                        {/*Icon to be displayed next to link*/}         
+                        <ListItemIcon className = {linkStyle}> 
+                            <Help />
+                        </ListItemIcon>
+
+                        <ListItemText primary = "Solve" />
+
+                    </ListItem>
                 </Link>
                 
             </List>

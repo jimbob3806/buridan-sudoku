@@ -23,11 +23,12 @@ import {
 
 // Component - Popup dialog box for informing client that the puzzle will be 
 // reset if they continue
-const RestartDialog = () => {
+const RestartDialog = props => {
     // State and context
     const mainContext = useContext(MainContext)
 
     //Styles
+    const styles = props.styles
 
     // Helper functions
 
@@ -40,6 +41,7 @@ const RestartDialog = () => {
                 mainContext.dialogs.RESTART}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
+            className = {styles.errorDialog}
         >                        
             <DialogTitle>
                 Are you sure?

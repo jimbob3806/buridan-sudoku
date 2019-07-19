@@ -9,12 +9,16 @@ import {
     // Variables
     import variables from "../index.scss"
     // Other JSS files
-    import gridStyles from "../jss/grid"
+    import {
+        gridStyles,
+        dialogStyles
+    } from "../jss/exports"
 
 // Styles
 const useMainStyles = makeStyles({
     // Insert imported JSS styles
     ...gridStyles,
+    ...dialogStyles,
     // Styling on parent component
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to fit
@@ -31,9 +35,9 @@ const useMainStyles = makeStyles({
         width: props.responsiveSize * 10,
         maxWidth: "600px",
         placeItems: "center center",
+        padding: `${props.responsiveSize / 3}px 
+            ${props.responsiveSize / 3}px`,
         margin: "auto",
-        // gridTemplateColumns: "50px 300px 300px 300px 50px",
-        // gridTemplateRows: "60px 80px 720px 80px 60px",
         gridTemplateColumns: "4% 55% 34% 4%",
         gridTemplateRows: "4% 8% 72% 8% 4%",
         gridColumnGap: "1%",
@@ -75,23 +79,17 @@ const useMainStyles = makeStyles({
 
     // Custom styling specific to each button group
     numberSelector: props => ({
-        // width: props.responsiveSize * 9
-        gridArea: "number",
-        //placeSelf: "center stretch"
+        gridArea: "number"
     }),
     operationSelector: props => ({
-        gridArea: "operation",
-        // float: "left"
+        gridArea: "operation"
     }),
     inputSelector: props => ({
-        gridArea: "input",
-        // float: "right"
+        gridArea: "input"
     }),
 
     // Other styling
     sudoku: props => ({
-        // width: props.responsiveSize * 9,
-        // height: props.responsiveSize * 9,
         gridArea: "sudoku"
     }),
     dialog: props => ({

@@ -2,20 +2,15 @@
 or another template file to get going!*/
 
 // General imports
-import React, {
-    useContext
-} from "react"
+import React from "react"
 
 // Material-ui imports
 import { 
-    Paper,
-    GridList,
-    GridListTile
+    Paper
 } from "@material-ui/core"
 
 // Own imports 
     //Context
-    import MainContext from "../context/Main"
     // Components
     import {
         SudokuGrid,
@@ -33,7 +28,6 @@ import {
 // Component
 const SolvePuzzle = props => {
     // State and context
-    const mainContext = useContext(MainContext)
 
     // Styles
     const styles = props.styles
@@ -44,28 +38,18 @@ const SolvePuzzle = props => {
     // Component render JSX
     return (
         <Paper className = {styles.solverContainer}>
-            {/*<GridList cellHeight = {mainContext.responsiveSize} spacing = {5}>
+            
+            <OperationSelector styles = {styles} />
+            <CheckDialog styles = {styles} />
+            <RestartDialog styles = {styles} />
+            <PopulateDialog styles = {styles} />                    
+        
+            <InputSelector styles = {styles} />
 
-                <GridListTile cols = {1.5} rows = {1}>*/}
-                    <OperationSelector styles = {styles} />
-                    <CheckDialog />
-                    <RestartDialog />
-                    <PopulateDialog />                    
-                {/*</GridListTile>
+            <SudokuGrid styles = {styles} />
+        
+            <NumberSelector styles = {styles} />
 
-                <GridListTile cols = {0.5} rows = {1}>*/}
-                    <InputSelector styles = {styles} />
-                {/*</GridListTile>
-
-                <GridListTile cols = {2} rows = {9}>*/}
-                    <SudokuGrid styles = {styles} />
-                {/*</GridListTile>
-
-                <GridListTile cols = {2} rows = {1}>*/}
-                    <NumberSelector styles = {styles} />
-                {/*</GridListTile>
-
-            </GridList>*/}
         </Paper>
     )
 }

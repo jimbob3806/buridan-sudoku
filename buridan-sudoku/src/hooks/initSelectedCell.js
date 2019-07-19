@@ -24,8 +24,9 @@ const useInitSelectedPuzzle = () => {
     const answer = context.answer
     const candidates = context.candidates
     if (         
-        // Most likely case at top!
-        mainContext.selectedCell ||
+        // Most likely case at top! - CAUTION selectedCell may be 0 (evaluates
+        // to false)
+        mainContext.selectedCell != null ||
         solution.length !== 81 || 
         puzzle.length !== 81 || 
         answer.length !== 81 ||

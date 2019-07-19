@@ -14,8 +14,10 @@ export const rectifyIndex = (index, wrapType, puzzle) => {
                 return num % 9 === 0 ? num + 8 : num - 1
             case TO_ROW_START:
                 return num % 9 === 8 ? num - 8 : num + 1
+            // NOTE different equalities on TO_COLUMN_END and TO_COLUMN_START
+            // these are correct!
             case TO_COLUMN_END:
-                return num / 9 <= 1 ? num + 72 : num - 9
+                return num / 9 < 1 ? num + 72 : num - 9
             case TO_COLUMN_START:
                 return num / 9 >= 8 ? num - 72 : num + 9
             default:

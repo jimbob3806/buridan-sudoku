@@ -24,10 +24,13 @@ import {
 // Component - Renders a message depending on how many answers were incorrect,
 // and if the puzzle was completed or not - Popup dialog box for informing 
 // client of how many answers were incorrect
-const CheckDialog = () => {
+const CheckDialog = props => {
     // State and context
     const context = useContext(GlobalContext)
     const mainContext = useContext(MainContext)
+
+    // Styles
+    const styles = props.styles
 
     // Helper functions
     const isComplete = () => {
@@ -44,15 +47,20 @@ const CheckDialog = () => {
 
     // Pre-render components
     let result
+    let requiredStyle
     if (isComplete()) {
         result = `Congratulations! You have completed the puzzle correctly. 😄`
+        requiredStyle = styles.notificationDialog
     } else if (mainContext.answersRemoved === 0) {
         result = `All your answers are correct 😀, but you still haven't
             finished the puzzle... 😐`
+        requiredStyle = styles.notificationDialog
     } else if (mainContext.answersRemoved === 1) {
         result = `1 answer was incorrect 😧`
+        requiredStyle = styles.errorDialog
     } else {
         result = `${mainContext.answersRemoved} answers were incorrect 😧`
+        requiredStyle = styles.errorDialog
     }
 
     // Component render JSX
@@ -61,6 +69,7 @@ const CheckDialog = () => {
             open = {mainContext.currentDialog === mainContext.dialogs.CHECK}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
+            className = {requiredStyle}
         >
             <DialogTitle>
                 Result

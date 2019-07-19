@@ -1,7 +1,6 @@
 // Export all components under a single file
 export { default as Header } from "./header/Header"
 export { default as Drawer } from "./header/Drawer"
-export { default as DrawerItem } from "./header/DrawerItem"
 export { default as Main } from "./Main"
 export { default as Footer } from "./Footer"
 export { default as InputSelector } from "./selectors/InputSelector"

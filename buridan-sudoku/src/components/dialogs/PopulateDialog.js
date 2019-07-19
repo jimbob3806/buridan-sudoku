@@ -23,11 +23,12 @@ import {
 
 // Component - Popup dialog box for informing client that all candidates will 
 // be overwritten
-const PopulateDialog = () => {
+const PopulateDialog = props => {
     // State and context
     const mainContext = useContext(MainContext)
 
     //Styles
+    const styles = props.styles
 
     // Helper functions
 
@@ -40,6 +41,7 @@ const PopulateDialog = () => {
                 mainContext.dialogs.POPULATE_CANDIDATES}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
+            className = {styles.cautionDialog}
         >
             <DialogTitle>
                 Are you sure?
