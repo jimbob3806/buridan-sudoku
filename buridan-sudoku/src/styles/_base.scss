@@ -1,0 +1,199 @@
+/*
+Usage SCSS:
+    * Import ./index.scss into any stylesheet to access the values below
+    * The colors available are:
+        * primary-color
+        * secondary-color
+        * neutral-color
+        * green-highlight
+        * yellow-highlight
+        * red-highlight
+    * To access a color, use color-x, where x is a number from 1 to 11, except
+    for the neutral-color, where x may be 1 to 13. The lower numbers are lighter
+    shades, and the higher numbers are darker shades.
+
+Usage JS (material-ui styles):
+    * Import ./index.scss as variables -> see brackets for example
+    (import variables from "somePath/index.scss")
+    * Access variables using "variables.desiredVariable"
+    * Variable names are the same as above, except that all hyphens have been 
+    remove, and the resulting name converted to cammelScript
+
+File reserved for universal variable declarations of color, default 
+margins etc., and other variables impacting the UI, which should have consistent
+values across the application (these changes being propagated automatically by
+using scss variables rather than hard-coding the values in each file).
+
+Note that this file is imported into ./index.scss, where some other application
+defaults etc. are specified. To use the variables in this file, only 
+./index.scss must be imported.
+
+Note that if any of the variables are changed in this file, 
+../../public/index.html, and ../../public/manifest.json should be checked, as 
+these files are not dependant on any stylesheet within this project. The 
+specific values to check are theme_color, and background_color in the manifest 
+file, and theme-color in the html file.
+*/
+
+//Color palette - primary color
+$primary-color-1: #7D73B2;      //Lightest shade of primary color
+$primary-color-2: #675CA5;
+$primary-color-3: #514599;
+$primary-color-4: #3C2E8C;
+$primary-color-5: #26177F;
+$primary-color-6: #110073;      //Primary color (a shade of purple)
+$primary-color-7: #100069;
+$primary-color-8: #0E005F;
+$primary-color-9: #0D0054;
+$primary-color-10: #0B004A;
+$primary-color-11: #0A003F;     //Darkest shade of primary color
+
+//Color palette - secondary color
+$secondary-color-1: #A2CCCC;      //Lightest shade of secondary color
+$secondary-color-2: #8BBFBF;
+$secondary-color-3: #73B2B2;
+$secondary-color-4: #5CA5A5;
+$secondary-color-5: #459999;
+$secondary-color-6: #2E8C8C;      //Secondary color (a shade of blue)
+$secondary-color-7: #177F7F;
+$secondary-color-8: #007373;
+$secondary-color-9: #006969;
+$secondary-color-10: #005F5F;
+$secondary-color-11: #005454;     //Darkest shade of secondary color
+
+//Color palette - neutral colors
+$neutral-color-1: #F3F5F6;      //White tone
+$neutral-color-2: #F2F4F5;
+$neutral-color-3: #F1F3F5;
+$neutral-color-4: #DCDDDF;
+$neutral-color-5: #C6C7C9;
+$neutral-color-6: #B0B1B3;
+$neutral-color-7: #9A9B9C;
+$neutral-color-8: #848586;
+$neutral-color-9: #6E6F70;
+$neutral-color-10: #58595A;
+$neutral-color-11: #424343;
+$neutral-color-12: #2C2D2D;
+$neutral-color-13: #161717;     //Black tone
+
+//Color palette - green highlight for notifications etc.
+$green-highlight-1: #C1E773;      //Lightest shade of highlight
+$green-highlight-2: #B7E35C;
+$green-highlight-3: #ADDF45;
+$green-highlight-4: #A3DB2E;
+$green-highlight-5: #99D717;
+$green-highlight-6: #8FD400;      //Highlight
+$green-highlight-7: #82C100;
+$green-highlight-8: #76AE00;
+$green-highlight-9: #699B00;
+$green-highlight-10: #5C8700;
+$green-highlight-11: #4E7400;     //Darkest shade of highlight
+
+//Color palette - yellow highlight for notifications etc.
+$yellow-highlight-1: #FFF573;      //Lightest shade of highlight
+$yellow-highlight-2: #FFF45C;
+$yellow-highlight-3: #FFF245;
+$yellow-highlight-4: #FFF12E;
+$yellow-highlight-5: #FFEF17;
+$yellow-highlight-6: #FFEE00;      //Highlight
+$yellow-highlight-7: #E8D900;
+$yellow-highlight-8: #D1C300;
+$yellow-highlight-9: #BAAE00;
+$yellow-highlight-10: #A39800;
+$yellow-highlight-11: #8C8200;     //Darkest shade of highlight
+
+//Color palette - red highlight for notifications etc.
+$red-highlight-1: #EA8585;      //Lightest shade of highlight
+$red-highlight-2: #E67171;
+$red-highlight-3: #E35D5D;
+$red-highlight-4: #DF4949;
+$red-highlight-5: #DC3535;
+$red-highlight-6: #D92121;      //Highlight
+$red-highlight-7: #C61E1E;
+$red-highlight-8: #B21C1C;
+$red-highlight-9: #9E1919;
+$red-highlight-10: #8B1515;
+$red-highlight-11: #771212;     //Darkest shade of highlight
+
+//Variable export for use in JS files within the application
+:export {
+    //Primary colors
+    primaryColor1: $primary-color-1;
+    primaryColor2: $primary-color-2;
+    primaryColor3: $primary-color-3;
+    primaryColor4: $primary-color-4;
+    primaryColor5: $primary-color-5;
+    primaryColor6: $primary-color-6;
+    primaryColor7: $primary-color-7;
+    primaryColor8: $primary-color-8;
+    primaryColor9: $primary-color-9;
+    primaryColor10: $primary-color-10;
+    primaryColor11: $primary-color-11;
+
+    //Secondary colors
+    secondaryColor1: $secondary-color-1;
+    secondaryColor2: $secondary-color-2;
+    secondaryColor3: $secondary-color-3;
+    secondaryColor4: $secondary-color-4;
+    secondaryColor5: $secondary-color-5;
+    secondaryColor6: $secondary-color-6;
+    secondaryColor7: $secondary-color-7;
+    secondaryColor8: $secondary-color-8;
+    secondaryColor9: $secondary-color-9;
+    secondaryColor10: $secondary-color-10;
+    secondaryColor11: $secondary-color-11;
+
+    //Neutral colors
+    neutralColor1: $neutral-color-1;
+    neutralColor2: $neutral-color-2;
+    neutralColor3: $neutral-color-3;
+    neutralColor4: $neutral-color-4;
+    neutralColor5: $neutral-color-5;
+    neutralColor6: $neutral-color-6;
+    neutralColor7: $neutral-color-7;
+    neutralColor8: $neutral-color-8;
+    neutralColor9: $neutral-color-9;
+    neutralColor10: $neutral-color-10;
+    neutralColor11: $neutral-color-11;
+    neutralColor12: $neutral-color-12;
+    neutralColor13: $neutral-color-13;
+
+    //Green highlights
+    greenHighlight1: $green-highlight-1;
+    greenHighlight2: $green-highlight-2;
+    greenHighlight3: $green-highlight-3;
+    greenHighlight4: $green-highlight-4;
+    greenHighlight5: $green-highlight-5;
+    greenHighlight6: $green-highlight-6;
+    greenHighlight7: $green-highlight-7;
+    greenHighlight8: $green-highlight-8;
+    greenHighlight9: $green-highlight-9;
+    greenHighlight10: $green-highlight-10;
+    greenHighlight11: $green-highlight-11;
+
+    //Yellow highlights
+    yellowHighlight1: $yellow-highlight-1;
+    yellowHighlight2: $yellow-highlight-2;
+    yellowHighlight3: $yellow-highlight-3;
+    yellowHighlight4: $yellow-highlight-4;
+    yellowHighlight5: $yellow-highlight-5;
+    yellowHighlight6: $yellow-highlight-6;
+    yellowHighlight7: $yellow-highlight-7;
+    yellowHighlight8: $yellow-highlight-8;
+    yellowHighlight9: $yellow-highlight-9;
+    yellowHighlight10: $yellow-highlight-10;
+    yellowHighlight11: $yellow-highlight-11;
+
+    //Red highlights
+    redHighlight1: $red-highlight-1;
+    redHighlight2: $red-highlight-2;
+    redHighlight3: $red-highlight-3;
+    redHighlight4: $red-highlight-4;
+    redHighlight5: $red-highlight-5;
+    redHighlight6: $red-highlight-6;
+    redHighlight7: $red-highlight-7;
+    redHighlight8: $red-highlight-8;
+    redHighlight9: $red-highlight-9;
+    redHighlight10: $red-highlight-10;
+    redHighlight11: $red-highlight-11;
+}
