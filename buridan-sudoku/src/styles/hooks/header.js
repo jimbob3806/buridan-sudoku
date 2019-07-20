@@ -20,11 +20,19 @@ const useHeaderStyles = makeStyles({
     },
     drawerItem: {
         color: variables.neutralColor1,
-        textDecoration: "none"
+        textDecoration: "none",
+        // Redundancy color setting for list icon
+        "& svg.MuiSvgIcon-root": {
+            color: variables.neutralColor1
+        }
     },
     drawerItemActive: {
         color: variables.neutralColor8,
-        textDecoration: "none"
+        textDecoration: "none",
+        // Redundancy color setting for list icon
+        "& svg.MuiSvgIcon-root": {
+            color: variables.neutralColor8
+        }
     }
 })
 

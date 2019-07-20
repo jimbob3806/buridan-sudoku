@@ -7,6 +7,14 @@
 // Styles - Green, red, and yellow dialog background themes for notification,
 // alerts, and or errors
 const dialogStyles = {
+    dialog: props => ({
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        flexWrap: "wrap",
+        padding: "1.3rem",
+        width: props.responsiveSize * 4
+    }),
     // Red theme
     errorDialog: {
         "& div.MuiDialogTitle-root": {
