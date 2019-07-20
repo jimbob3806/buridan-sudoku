@@ -20,6 +20,7 @@ const MainState = props => {
     // Init fields for mainContext
     const [selectedCell, setSelectedCell] = useState() 
     const [inputMethod, setInputMethod] = useState("ANSWER")
+    // Possible input methods
     const methods = {
         ANSWER: "ANSWER", 
         CANDIDATES: "CANDIDATES",
@@ -27,6 +28,7 @@ const MainState = props => {
     }
     const [responsiveSize, setResponsiveSize] = useState()
     const [currentDialog, setCurrentDialog] = useState(null)
+    // Possible dialogs
     const dialogs = {
         CHECK: "CHECK",
         RESTART: "RESTART",
