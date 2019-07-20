@@ -26,6 +26,7 @@ const useLoadPuzzle = localPuzzle => {
     const solution = localPuzzle.solution
     const answer = localPuzzle.answer
     const candidates = localPuzzle.candidates
+    const test = localPuzzle.test
 
     // Conditionally updating context with puzzle providing that a puzzle of the
     // correct format has been provided (in this case a 9x9 sudoku). Note that 
@@ -40,7 +41,8 @@ const useLoadPuzzle = localPuzzle => {
         solution.length !== 81 || 
         puzzle.length !== 81 || 
         answer.length !== 81 ||
-        candidates.length !== 81
+        candidates.length !== 81 ||
+        test.length !== 81
     ) {
         // Do not return error - client will indicate that no sudoku has been
         // loaded, since the new puzzle will not be rendered in the SolvePuzzle
@@ -68,6 +70,10 @@ const useLoadPuzzle = localPuzzle => {
                 // pushed to the answer array if it shorter than 81
                 return context.setCandidate.add(candidate, index)
             })
+        })
+        test.map((value, index) => {
+            // Index not strictly required
+            return context.setTest.add(value, index)
         })
         return context
     }

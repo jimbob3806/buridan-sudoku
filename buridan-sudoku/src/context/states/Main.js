@@ -22,16 +22,19 @@ const MainState = props => {
     const [inputMethod, setInputMethod] = useState("ANSWER")
     const methods = {
         ANSWER: "ANSWER", 
-        CANDIDATES: "CANDIDATES"
+        CANDIDATES: "CANDIDATES",
+        TEST: "TEST"
     }
     const [responsiveSize, setResponsiveSize] = useState()
     const [currentDialog, setCurrentDialog] = useState(null)
     const dialogs = {
         CHECK: "CHECK",
         RESTART: "RESTART",
-        POPULATE_CANDIDATES: "POPULATE_CANDIDATES"
+        POPULATE_CANDIDATES: "POPULATE_CANDIDATES",
+        TEST: "TEST"
     }
     const [answersRemoved, setAnswersRemoved] = useState(0)
+    const [firstTest, setFirstTest] = useState()
 
     // Fetch window size
     const size = useWindowSize()
@@ -58,6 +61,8 @@ const MainState = props => {
                 return handleAnswerChange(number)
             case methods.CANDIDATES:
                 return handleCandidateChange(number)
+            case methods.TEST:
+                return handleTestChange(number)
             default:
                 return
         }
@@ -67,10 +72,37 @@ const MainState = props => {
         return context.setAnswer.add(numString, cell)
     }
     const handleCandidateChange = (number, cell = selectedCell) => {
+        if (context.answer[cell] !== "0" ||
+            context.test[cell] !== "0") {
+            return null
+        } else {
+            const numString = `${number}`
+            context.candidates[cell].includes(numString) ?
+                context.setCandidate.remove(numString, cell) :
+                context.setCandidate.add(numString, cell)
+        }
+    }
+    const handleTestChange = (number, cell = selectedCell) => {
         const numString = `${number}`
-        context.candidates[cell].includes(numString) ?
-            context.setCandidate.remove(numString, cell) :
-            context.setCandidate.add(numString, cell)
+        if (context.answer[cell] !== "0") {
+            return null
+        } else if (
+            // Checking to see if test is same as puzzle (test reset to puzzle
+            // each time client has finished) this allows us to mark the first
+            // number in a test with a special style, denoting the initial
+            // assumption
+            context.test.reduce((acc, cur, index) => {
+                return acc ? 
+                    (cur === context.puzzle[index] ? 
+                        true : false) : false
+            }, true)
+        ) {
+            setFirstTest(cell)
+            return context.setTest.add(numString, cell)
+        }
+        else {
+            return context.setTest.add(numString, cell)
+        }
     }
     
     const handleRemoveAnswer = (cell = selectedCell) => {
@@ -78,14 +110,17 @@ const MainState = props => {
     }
     const handleRemoveCandidates = (cell = selectedCell) => {
         context.setCandidate.burnOne(cell)
+    } 
+    const handleRemoveTest = (cell = selectedCell) => {
+        return context.setTest.remove(cell)
     }
 
     // Removes answer from cell, and removes all candidates from cell if there
     // is no answer
     const handleRemoveCell = () => {
         context.answer[selectedCell] === "0" ?
-            handleRemoveCandidates() :
-            handleRemoveAnswer()
+            (context.test[selectedCell] === "0" ? handleRemoveCandidates() :
+            handleRemoveTest()) : handleRemoveAnswer()
     }
     // Populates current selected cell with the correct answer
     const handleGiveAnswer = () => {
@@ -99,6 +134,7 @@ const MainState = props => {
                 return value
             } else if (context.answer[index] !== "0") {
                 countAnswersRemoved++
+                handleRemoveTest(index)
                 return handleRemoveAnswer(index)
             } else {
                 return null
@@ -142,11 +178,13 @@ const MainState = props => {
             currentDialog: currentDialog,
             dialogs: dialogs,
             answersRemoved: answersRemoved,
+            firstTest: firstTest,
             setSelectedCell: setSelectedCell,
             setInputMethod: setInputMethod,
             setResponsiveSize: handleSizeChange,
             setCurrentDialog: setCurrentDialog,
             setAnswersRemoved: setAnswersRemoved,
+            setFirstTest: setFirstTest,
 
             handleChange: handleChange,
             handleCheck: handleCheck,

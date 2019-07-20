@@ -40,7 +40,7 @@ const gridStyles = {
         height: props.responsiveSize
     }),
     puzzle: props => ({
-        color: variables.neutralColor6,
+        color: variables.neutralColor7,
         // Found that rem unit did not size digits aggressively enough to fit
         // numbers correctly at smaller sizes
         fontSize: `${props.responsiveSize / 1.5}px`,
@@ -54,6 +54,26 @@ const gridStyles = {
         width: props.responsiveSize,
         height: props.responsiveSize
     }),
+    test: props => ({
+        // Found that rem unit did not size digits aggressively enough to fit
+        // numbers correctly at smaller sizes
+        fontSize: `${props.responsiveSize / 1.5}px`,
+        display: "flex", // For aliging text!
+        justifyContent: "center", // Align horizontal
+        alignItems: "center", // Align vertical
+        border: `1.5px solid ${variables.neutralColor1}`,
+        margin: "0px",
+        boxSizing: "border-box", // Prevent increased element size with padding
+        padding: props.responsiveSize / 10,
+        width: props.responsiveSize,
+        height: props.responsiveSize
+    }),
+    first: {
+        color: variables.redHighlight9
+    },
+    remainder: {
+        color: variables.greenHighlight6
+    },
     row: props => ({
         display: "flex",
         flexDirection: "row",

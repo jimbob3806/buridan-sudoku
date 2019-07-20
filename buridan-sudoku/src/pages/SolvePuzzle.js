@@ -19,7 +19,8 @@ import {
         OperationSelector,
         CheckDialog,
         RestartDialog,
-        PopulateDialog
+        PopulateDialog,
+        TestDialog
     } from "../components/exports"
     // Hooks
     import useWatchKey from "../hooks/watchKey"
@@ -42,7 +43,8 @@ const SolvePuzzle = props => {
             <OperationSelector styles = {styles} />
             <CheckDialog styles = {styles} />
             <RestartDialog styles = {styles} />
-            <PopulateDialog styles = {styles} />                    
+            <PopulateDialog styles = {styles} />  
+            <TestDialog styles = {styles} />                  
         
             <InputSelector styles = {styles} />
 

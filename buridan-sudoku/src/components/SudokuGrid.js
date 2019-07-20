@@ -60,7 +60,32 @@ const SudokuGrid = props => {
                     {context.answer[index]}
                 </div>
             )
-        } if (cell === "0") {
+        } else if (cell === "0" && context.test[index] !== "0") {
+            return (
+                <div  
+                    key = {index} 
+                    className = {`
+                        ${styles.test}
+                        ${
+                            mainContext.firstTest === index ? 
+                                styles.first : 
+                                styles.remainder
+                        } 
+                        ${isOddBox(index) ? styles.light : styles.dark}
+                        ${
+                            mainContext.selectedCell === index ? 
+                                styles.selected : 
+                                null
+                        }
+                    `}
+                    onClick = {() =>
+                        mainContext.setSelectedCell(index)
+                    }
+                >
+                    {context.test[index]}
+                </div>
+            )
+        } else if (cell === "0") {
             return (
                 <div  
                     key = {index} 

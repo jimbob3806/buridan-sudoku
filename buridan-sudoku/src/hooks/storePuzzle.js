@@ -17,7 +17,8 @@ const useStorePuzzle = () => {
     if (context.puzzle.length !== 81 ||
         context.solution.length !== 81 ||
         context.answer.length !== 81 ||
-        context.candidates.length !== 81
+        context.candidates.length !== 81 ||
+        context.test.length !== 81
     ) {
         return
     } else {
@@ -38,6 +39,10 @@ const useStorePuzzle = () => {
             solution: context.solution,
             answer: context.answer,
             candidates: context.candidates,
+            // First test is not stored in global context, and therefore any 
+            // tests may not be stored in local storage if first test is to
+            // be rendered up reload
+            test: context.puzzle,
             encodedOriginal: encodedOriginal,
             encodedAnswer: encodedAnswer,
             lastActive: new Date()

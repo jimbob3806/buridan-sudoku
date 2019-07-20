@@ -19,11 +19,19 @@ export default createContext({
     // candidates used by the client to work out the correct answeres - arrays 
     // arranged by row left to right.
     candidates: [],
+    // Array set equal to puzzle each time it is used. Test may be used by the
+    // client to test if a given cell can be a specific value (choose a
+    // candidate from a cell, then propagate that guess by filling in
+    // surrounding cells according to the test cell, and see if a contradiction
+    // is made, which would indicate that the first test cell cannot be of the
+    // suggested value)
+    test: [],
     // Set puzzle, and solution replace entire array only
     setPuzzle: () => {},
     setSolution: () => {},
-    // Set answer and candidates alters current value(s) to reflect the changes 
-    // by the client
+    // Set answer, candidates, and test alters current value(s) to reflect the 
+    // changes by the client
     setAnswer: () => {},
-    setCandidate: () => {}
+    setCandidate: () => {},
+    setTest: () => {}
 })

@@ -45,8 +45,12 @@ const NumberSelector = props => {
     return (
         <ToggleButtonGroup 
                 value = {
-                    (context.answer[mainContext.selectedCell] === "0") ? 
-                        context.candidates[mainContext.selectedCell] :
+                    context.answer[mainContext.selectedCell] === "0" ? 
+                        (
+                        context.test[mainContext.selectedCell] === "0" ?
+                            context.candidates[mainContext.selectedCell] : 
+                            context.test[mainContext.selectedCell]
+                        ) :
                         context.answer[mainContext.selectedCell]
                 }
                 size = "small"

@@ -18,6 +18,11 @@ import {
     BURN_ONE,
     BURN_CANDIDATES
  } from "../reducers/candidate"
+ import {
+    testReducer,
+    ADD_TEST,
+    REMOVE_TEST
+ } from "../reducers/test"
 
 // Component
 const GlobalState = props => {
@@ -33,6 +38,11 @@ const GlobalState = props => {
     // at a time only
     const [candidates, dispatchCandidate] = useReducer(
         candidateReducer,
+        // Default value
+        []
+    )
+    const [test, dispatchTest] = useReducer(
+        testReducer,
         // Default value
         []
     )
@@ -82,16 +92,36 @@ const GlobalState = props => {
         }
     }
 
+    const setTest = {
+        add: (test, index) => {
+            dispatchTest({
+                type: ADD_TEST,
+                test: test,
+                index: index
+            })
+        },
+        remove: index => {
+            dispatchTest({
+                type: REMOVE_TEST,
+                index: index
+            })
+        }
+    }
+
     return (
         <GlobalContext.Provider value = {{
+            // Context values
             puzzle: puzzle,
             solution: solution,
             answer: answer,
             candidates: candidates,
+            test: test,
+            // Asignment functions
             setPuzzle: setPuzzle,
             setSolution: setSolution,
             setAnswer: setAnswer,
             setCandidate: setCandidate,
+            setTest: setTest
         }} >
             {props.children}
         </GlobalContext.Provider>

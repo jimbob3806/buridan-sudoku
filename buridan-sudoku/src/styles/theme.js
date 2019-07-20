@@ -44,6 +44,9 @@ const theme = createMuiTheme({
         }
     },
     overrides: {
+        // Overriding stlyes for MuiButton, MuiToggleButton, etc. to ensure that
+        // buttons may be scaled as small as required for any given screen 
+        // size
         MuiToggleButton: {
             root: {
                 padding: "0.1rem",
@@ -70,6 +73,7 @@ const theme = createMuiTheme({
         },
         MuiSvgIcon: {
             root: {
+                color: "inherit",
                 fontSize: "150%"
             }
         }

@@ -9,7 +9,8 @@ import {
 } from "@material-ui/core"
 import {
     Add,
-    LiveHelp
+    LiveHelp,
+    CallSplit
 } from "@material-ui/icons"
 import {
     ToggleButton,
@@ -38,7 +39,13 @@ const InputSelector = props => {
             onChange = {(event, method) => {
                 // Returns null if client clicks the already selected
                 // input method.
-                if (method === null) {
+                if (method === null && 
+                    mainContext.inputMethod === mainContext.methods.TEST) {
+                    // If test button pressed when TEST is already selected, 
+                    // then dialog for dealing with test values should be
+                    // displayed
+                    mainContext.setCurrentDialog(mainContext.dialogs.TEST)
+                } else if (method === null) {
                     return
                 } else {
                     mainContext.setInputMethod(method)
@@ -58,6 +65,12 @@ const InputSelector = props => {
             <ToggleButton value = {mainContext.methods.CANDIDATES}>
                 <Tooltip title = "Insert candidates (E)">
                     <LiveHelp />
+                </Tooltip>
+            </ToggleButton>
+
+            <ToggleButton value = {mainContext.methods.TEST}>
+                <Tooltip title = "Test a candidate (V)">
+                    <CallSplit />
                 </Tooltip>
             </ToggleButton>
 

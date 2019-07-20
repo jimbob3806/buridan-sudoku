@@ -34,6 +34,7 @@ const useSetPuzzle = () => {
         solution: defaultDecodedSolution,
         answer: defaultDecodedPuzzle,
         candidates: defaultDecodedPuzzle.map(() => []),
+        test: defaultDecodedPuzzle,
         encodedOriginal: defaultEncodedPuzzle,
         econdedAnswer: defaultEncodedPuzzle,
         lastActive: null
@@ -56,7 +57,8 @@ const useSetPuzzle = () => {
         context.solution.length === 81 &&
         context.puzzle.length === 81 &&
         context.answer.length === 81 &&
-        context.candidates.length === 81
+        context.candidates.length === 81 &&
+        context.test.length === 81
     ) { 
         // Context not changed, preventing a re-render of the component calling
         // this hook, and therefore preventing this hook being called in an
@@ -88,6 +90,7 @@ const useSetPuzzle = () => {
             solution: solution,
             answer: puzzle,
             candidates: puzzle.map(() => []),
+            test: puzzle,
             encodedOriginal: encodedPuzzle,
             econdedAnswer: encodedPuzzle,
             lastActive: null
@@ -112,6 +115,10 @@ const useSetPuzzle = () => {
             // Index not strictly required
             return context.setCandidate.add(candidate, index)
         })
+    })
+    defaultPuzzle.test.map((value, index) => {
+        // Index not strictly required
+        return context.setTest.add(value, index)
     })
 
     // Remove hash from url, so that this hook does not attempt to set

@@ -39,8 +39,11 @@ const HeaderDrawer = props => {
     const styles = props.styles
 
     // Helper functions
-    const linkStyle = (headerContext.pathLoaded() === props.path) ? 
-        styles.drawerItemActive : styles.drawerItem
+    //eslint-disable-next-line
+    const linkStyle = path => {
+        return (headerContext.pathLoaded() === path) ? styles.drawerItemActive : 
+        styles.drawerItem
+    }
     
     // Component render JSX
     return(
@@ -52,14 +55,16 @@ const HeaderDrawer = props => {
                 <Link to = "/solve" className = {styles.drawerItem}>
                     <ListItem 
                         button = {true}
-                        className = {linkStyle}
+                        className = {`${linkStyle("/solve")} ${linkStyle("/")}`}
                         onClick = {() => { 
                             headerContext.setIsDrawerOpen(false) 
                         }}
                     >
 
                         {/*Icon to be displayed next to link*/}
-                        <ListItemIcon className = {linkStyle}> 
+                        <ListItemIcon className = {`${linkStyle("/solve")} 
+                            ${linkStyle("/")}`}
+                        > 
                             <GridOn /> 
                         </ListItemIcon>
 
@@ -71,18 +76,18 @@ const HeaderDrawer = props => {
                 <Link to = "/load" className = {styles.drawerItem}>
                     <ListItem 
                         button = {true}
-                        className = {linkStyle}
+                        className = {linkStyle("/load")}
                         onClick = {() => { 
                             headerContext.setIsDrawerOpen(false) 
                         }}
                     >
 
                         {/*Icon to be displayed next to link*/}
-                        <ListItemIcon className = {linkStyle}> 
+                        <ListItemIcon className = {linkStyle("/load")}> 
                             <Folder />
                         </ListItemIcon>
 
-                        <ListItemText primary = "Solve" />
+                        <ListItemText primary = "Load Puzzle" />
 
                     </ListItem>
                 </Link>
@@ -90,18 +95,18 @@ const HeaderDrawer = props => {
                 <Link to = "/set" className = {styles.drawerItem}>
                     <ListItem 
                         button = {true}
-                        className = {linkStyle}
+                        className = {linkStyle("/set")}
                         onClick = {() => { 
                             headerContext.setIsDrawerOpen(false) 
                         }}
                     >
 
                         {/*Icon to be displayed next to link*/}
-                        <ListItemIcon className = {linkStyle}> 
+                        <ListItemIcon className = {linkStyle("/set")}> 
                             <Create /> 
                         </ListItemIcon>
 
-                        <ListItemText primary = "Solve" />
+                        <ListItemText primary = "Set Puzzle" />
 
                     </ListItem>
                 </Link>
@@ -109,18 +114,18 @@ const HeaderDrawer = props => {
                 <Link to = "/instructions" className = {styles.drawerItem}>
                     <ListItem 
                         button = {true}
-                        className = {linkStyle}
+                        className = {linkStyle("/instructions")}
                         onClick = {() => { 
                             headerContext.setIsDrawerOpen(false) 
                         }}
                     >
 
                         {/*Icon to be displayed next to link*/}         
-                        <ListItemIcon className = {linkStyle}> 
+                        <ListItemIcon className = {linkStyle("/instructions")}> 
                             <Help />
                         </ListItemIcon>
 
-                        <ListItemText primary = "Solve" />
+                        <ListItemText primary = "Instructions" />
 
                     </ListItem>
                 </Link>
