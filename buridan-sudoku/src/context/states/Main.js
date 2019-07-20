@@ -42,14 +42,16 @@ const MainState = props => {
     // Helper functions
     // Change default divider value to scale size of the components displayed
     const handleSizeChange = (
-        divider = 12, 
+        divider = 13, 
         width = size.width,
         height = size.height
         ) => {
         // Returns some size based on screen width or screen height (whichever 
         // is smaller). Size used to dynamically determine component sizes
         if (height > width) {
-            return setResponsiveSize(Math.floor(width / divider))
+            // Make puzzle take up more space on smaller, vertical screen (such
+            // as smartphones)
+            return setResponsiveSize(Math.floor(width / (divider - 2)))
         } else {
             return setResponsiveSize(Math.floor(height / divider))
         }

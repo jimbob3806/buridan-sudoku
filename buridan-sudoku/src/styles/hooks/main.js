@@ -23,8 +23,8 @@ const useMainStyles = makeStyles({
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to fit
         // correctly at smaller sizes
-        padding: `${props.responsiveSize / 2.5}px 
-            ${props.responsiveSize / 3}px`,
+        padding: `${props.responsiveSize / 2}px 
+            ${props.responsiveSize / 2}px`,
         margin: "auto",
         justifyContent: "center"
     }),
@@ -33,10 +33,7 @@ const useMainStyles = makeStyles({
         backgroundColor: variables.secondaryColor1,
         height: props.responsiveSize * 13,
         width: props.responsiveSize * 10,
-        maxWidth: "600px",
         placeItems: "center center",
-        padding: `${props.responsiveSize / 3}px 
-            ${props.responsiveSize / 3}px`,
         margin: "auto",
         gridTemplateColumns: "4% 55% 34% 4%",
         gridTemplateRows: "4% 8% 72% 8% 4%",

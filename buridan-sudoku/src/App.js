@@ -47,7 +47,7 @@ const App = () => {
     return (
         <Router className = {styles.app}>
 
-            <GridList cellHeight = "auto" spacing = {10}>
+            <GridList cellHeight = "auto" spacing = {0}>
 
                 <GridListTile cols = {2} rows = {1}>
                     <HeaderState>
