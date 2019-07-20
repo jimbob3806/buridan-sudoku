@@ -33,10 +33,12 @@ const MainState = props => {
         CHECK: "CHECK",
         RESTART: "RESTART",
         POPULATE_CANDIDATES: "POPULATE_CANDIDATES",
-        TEST: "TEST"
+        TEST: "TEST",
+        DELETE: "DELETE"
     }
     const [answersRemoved, setAnswersRemoved] = useState(0)
     const [firstTest, setFirstTest] = useState()
+    const [puzzleKey, setPuzzleKey] = useState()
 
     // Fetch window size
     const size = useWindowSize()
@@ -262,7 +264,11 @@ const MainState = props => {
             // Dialog handlers
                 deleteTest: deleteTest,
                 removeInitCandidate: removeInitCandidate,
-                testToAnswer: testToAnswer
+                testToAnswer: testToAnswer,
+            // Load component context
+                puzzleKey: puzzleKey,
+            // Load component methods
+                setPuzzleKey: setPuzzleKey
         }} >
             {props.children}
         </MainContext.Provider>

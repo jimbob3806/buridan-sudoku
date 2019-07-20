@@ -1,6 +1,7 @@
 // General imports
 import React, {
-    useState
+    useState, 
+    useContext
 } from "react"
 /*eslint-disable no-unused-vars*/
 import { 
@@ -12,12 +13,17 @@ import {
 
 // Material-ui imports
 import {
-    Paper
+    Paper, 
+    Button
 } from "@material-ui/core"
 
 // Own imports 
-    //Context & States
+    // Context & States
+    import MainContext from "../context/Main"
     // Components
+    import {
+        DeleteDialog
+    } from "../components/exports"
     // Hooks
     import useGetPuzzles from "../hooks/getPuzzles"
     import useLoadPuzzle from "../hooks/loadPuzzle"
@@ -31,6 +37,7 @@ const LoadPuzzle = props => {
     // Context & state
     const [puzzleToLoad, setPuzzleToLoad] = useState(null)
     const localPuzzles = useGetPuzzles()
+    const mainContext = useContext(MainContext)
 
     // Styles
     const styles = props.styles
@@ -95,23 +102,53 @@ const LoadPuzzle = props => {
 
     // Component render JSX
     return (
-        sudokus.map((puzzle, index) => {
-            return (
-                <Paper key = {index}>
-                    <Link to = "/solve" onMouseDown = {() => {
-                        /*onMouseDown ensures that setting of puzzle to context
-                        is executed before the component unloads*/
-                        setPuzzleToLoad(localPuzzles[index])
-                    }}>
-                        Link
-                    </Link>
+        <div>
+            {sudokus.map((puzzle, index) => {
+                return (
+                    <Paper key = {index} className = {styles.loadContainer}>
+                        <Link 
+                            to = "/solve" 
+                            onMouseDown = {() => {
+                            /*onMouseDown ensures that setting of puzzle to 
+                            context is executed before the component unloads*/
+                                setPuzzleToLoad(localPuzzles[index])
+                            }}
+                            className = {styles.play}
+                        >
+                            <Button className = {styles.buttonSingle}>
+                                PLAY
+                            </Button>
+                        </Link>
 
-                    <div>
-                        {puzzle}
-                    </div>
-                </Paper>
-            )
-        })
+                        <Button 
+                            className = 
+                                {`${styles.delete} ${styles.buttonSingle}`}
+                            onClick = {() => { 
+                                // Key for each puzzle is the encoded original,
+                                // as this is a unique identifier which does
+                                // not change
+                                const key = localPuzzles[index].encodedOriginal
+                                // Set puzzle key to mainContext, so that it can
+                                // be deleted if the user confirms this in the
+                                // Delete dialog component
+                                mainContext.setPuzzleKey(key)
+                                mainContext.setCurrentDialog(
+                                    mainContext.dialogs.DELETE)
+                            }}
+                        >
+                            DELETE
+                        </Button>
+
+                        <div className = {styles.sudoku}>
+                            {puzzle}
+                        </div>
+                    </Paper>
+                )
+            })}
+
+            <DeleteDialog  styles = {styles} />
+
+        </div>
     )   
 }
 

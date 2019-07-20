@@ -24,10 +24,60 @@ const useMainStyles = makeStyles({
         // Found that rem unit did not size margins aggressively enough to fit
         // correctly at smaller sizes
         padding: `${props.responsiveSize / 2}px 
-            ${props.responsiveSize / 2}px`,
+            ${props.responsiveSize / 2}px 0`,
         margin: "auto",
         justifyContent: "center"
     }),
+
+
+
+
+    loadContainer: props => ({
+        display: "grid",
+        backgroundColor: variables.secondaryColor1,
+        "& .MuiButtonBase-root:hover": {
+            color: variables.neutralColor1,
+            backgroundColor: variables.secondaryColor4
+        },
+        height: props.responsiveSize * 11,
+        width: props.responsiveSize * 10,
+        placeItems: "center center",
+        margin: `0 auto ${props.responsiveSize / 2}px auto`,
+        gridTemplateColumns: "4% 44.5% 44.5% 4%",
+        gridTemplateRows: "2% 8.8% 2% 79.2% 4%",
+        gridColumnGap: "1%",
+        gridRowGap: "1%",
+        gridTemplateAreas: `
+            ".  .           .           ."
+            ".  play        delete      ."
+            ".  .           .           ."
+            ".  sudoku      sudoku      ."
+            ".  .           .           ."
+        `
+    }),
+    play: {
+        gridArea: "play",
+        textDecoration: "none"
+    },
+    delete: {
+        gridArea: "delete"
+    },
+    buttonSingle: props => ({
+        color: variables.neutralColor3,
+        backgroundColor: variables.secondaryColor8,
+        // Found that rem unit did not size digits aggressively enough to
+        // fit numbers correctly at smaller sizes
+        fontSize: `${props.responsiveSize / 3}px`,
+        padding: `${props.responsiveSize / 3} px`,
+        width: props.responsiveSize * 2,
+        height: props.responsiveSize / 1.2
+    }),
+    
+
+
+
+
+
     solverContainer: props => ({
         display: "grid",
         backgroundColor: variables.secondaryColor1,
@@ -75,28 +125,21 @@ const useMainStyles = makeStyles({
     }),
 
     // Custom styling specific to each button group
-    numberSelector: props => ({
+    numberSelector: {
         gridArea: "number"
-    }),
-    operationSelector: props => ({
+    },
+    operationSelector: {
         gridArea: "operation"
-    }),
-    inputSelector: props => ({
+    },
+    inputSelector: {
         gridArea: "input"
-    }),
+    },
 
     // Other styling
-    sudoku: props => ({
+    sudoku: {
         gridArea: "sudoku"
-    }),
-    dialog: props => ({
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        flexWrap: "wrap",
-        padding: "1.3rem",
-        width: props.responsiveSize * 4
-    })
+    }
+    
 })
 
 // Exports

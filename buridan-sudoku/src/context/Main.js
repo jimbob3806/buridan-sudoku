@@ -28,7 +28,7 @@ export default createContext({
         // conditionally render this number, and also to remove this number from
         // the list of its cell's candidates if the user chooses to
         firstTest: 0,
-    // Solver context methods
+    // Solver context methods - sets above context values as indicated by name
         setSelectedCell: () => {},
         setInputMethod: () => {},
         setResponsiveSize: () => {},
@@ -49,5 +49,12 @@ export default createContext({
         // Handles actions dispatched by Test dialog component
         deleteTest: () => {},
         removeInitCandidate: () => {},
-        testToAnswer: () => {}
-})
+        testToAnswer: () => {},
+    // Load component context 
+        // Stores a key to one of the puzzles stored in the local storage.
+        // Accessed by Delete dialog when user confirms they wish to delete a 
+        // given puzzle from the local storage
+        puzzleKey: null,
+    // Load component handlers - sets above context values as indicated by name
+        setPuzzleKey: () => {}
+})  
