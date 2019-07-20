@@ -72,7 +72,7 @@ const useSetPuzzle = () => {
         solution.length !== 81 || 
         puzzle.length !== 81
     ) {
-        // Checking to see if any puzzles are stored in local data, and 
+        // Checking to see if any puzzles are stored in local storage, and 
         // recovering them, then setting the most recent puzzle to context
         if (localPuzzles.length !== 0) {
             const latestPuzzle = localPuzzles.reduce((acc, cur) => {

@@ -38,21 +38,24 @@ const SolvePuzzle = props => {
 
     // Component render JSX
     return (
-        <Paper className = {styles.solverContainer}>
+        <div>
+            <Paper className = {styles.solverContainer}>
+                
+                <OperationSelector styles = {styles} />
+                <CheckDialog styles = {styles} />
+                <RestartDialog styles = {styles} />
+                <PopulateDialog styles = {styles} />  
+                <TestDialog styles = {styles} />                  
             
-            <OperationSelector styles = {styles} />
-            <CheckDialog styles = {styles} />
-            <RestartDialog styles = {styles} />
-            <PopulateDialog styles = {styles} />  
-            <TestDialog styles = {styles} />                  
-        
-            <InputSelector styles = {styles} />
+                <InputSelector styles = {styles} />
 
-            <SudokuGrid styles = {styles} />
-        
-            <NumberSelector styles = {styles} />
+                <SudokuGrid styles = {styles} />
+            
+                <NumberSelector styles = {styles} />
 
-        </Paper>
+            </Paper>
+
+        </div>
     )
 }
 
