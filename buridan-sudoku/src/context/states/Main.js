@@ -39,6 +39,7 @@ const MainState = props => {
     // Fetch window size
     const size = useWindowSize()
 
+    // Helper functions
     // Change default divider value to scale size of the components displayed
     const handleSizeChange = (
         divider = 12, 
@@ -54,7 +55,18 @@ const MainState = props => {
         }
     }
 
-    // Helper functions
+    // Shorthand call to global context reducers with appropriate default args
+    const handleRemoveAnswer = (cell = selectedCell) => {
+        return context.setAnswer.remove(cell)
+    }
+    const handleRemoveCandidates = (cell = selectedCell) => {
+        context.setCandidate.burnOne(cell)
+    } 
+    const handleRemoveTest = (cell = selectedCell) => {
+        return context.setTest.remove(cell)
+    }
+
+    // INPUT HANDLERS
     const handleChange = number => {
         switch (inputMethod) {
             case methods.ANSWER:
@@ -103,24 +115,23 @@ const MainState = props => {
         else {
             return context.setTest.add(numString, cell)
         }
-    }
+    }  
     
-    const handleRemoveAnswer = (cell = selectedCell) => {
-        return context.setAnswer.remove(cell)
-    }
-    const handleRemoveCandidates = (cell = selectedCell) => {
-        context.setCandidate.burnOne(cell)
-    } 
-    const handleRemoveTest = (cell = selectedCell) => {
-        return context.setTest.remove(cell)
-    }
-
+    // OPERATION HANDLERS
     // Removes answer from cell, and removes all candidates from cell if there
     // is no answer
     const handleRemoveCell = () => {
-        context.answer[selectedCell] === "0" ?
-            (context.test[selectedCell] === "0" ? handleRemoveCandidates() :
-            handleRemoveTest()) : handleRemoveAnswer()
+        if (context.answer[selectedCell] !== "0") {
+            handleRemoveAnswer()
+            // Test should not be present in same cell as answer, but this 
+            // statement ensures that when an answer is deleted, no test will
+            // show up underneath it
+            return handleRemoveTest()
+        } else if (context.test[selectedCell] !== "0") {
+            return handleRemoveTest()
+        } else if (context.test[selectedCell] === "0") {
+            return handleRemoveCandidates()
+        } 
     }
     // Populates current selected cell with the correct answer
     const handleGiveAnswer = () => {
@@ -143,15 +154,17 @@ const MainState = props => {
         setAnswersRemoved(countAnswersRemoved)
         setCurrentDialog(dialogs.CHECK)
     }
-    // Reset answer to the initial puzzle, and remove all candidates
+    // Reset answer to the initial puzzle, and remove all candidates, and tests
     const handleRestart = () => {
         context.puzzle.map((value, index) => {
             context.setCandidate.burnOne(index)
+            context.setTest.remove(index)
             return handleAnswerChange(value, index)
         })
     }
     // Add all candidates 1-9 to cells which currently have no clue, and no
-    // answer
+    // answer. Note still adds candidates to a cell if a test number populates
+    // it
     const handlePopulateCandidates = () => {
         context.answer.map((value, index) => {
             const candidateArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -169,29 +182,83 @@ const MainState = props => {
         })
     }
 
+    // Dialog handlers
+    const deleteTest = () => {
+        // Restore test array to be equivalent to puzzle array
+        context.puzzle.map((value, index) => {
+            if (value === context.test[index]) { 
+                return null
+            } else if (context.test[index] !== "0") {
+                return handleRemoveTest(index)
+            } else {
+                return null
+            }
+        })
+        setFirstTest(null)
+        setCurrentDialog(null)
+    } 
+    const removeInitCandidate = () => {
+        context.setCandidate.remove(
+            context.test[firstTest], firstTest)
+        // Restore test array to be equivalent to puzzle array
+        context.puzzle.map((value, index) => {
+            if (value === context.test[index]) { 
+                return null
+            } else if (context.test[index] !== "0") {
+                return handleRemoveTest(index)
+            } else {
+                return null
+            }
+        })
+        setFirstTest(null)
+        setCurrentDialog(null)
+    } 
+    const testToAnswer = () => {
+        // Move all number in test array to answer array
+        context.test.map((value, index) => {
+            if (value === context.answer[index]) { 
+                return null
+            } else if (value !== "0") {
+                handleRemoveTest(index)
+                return handleAnswerChange(value, index)
+            } else {
+                return null
+            }
+        })
+        setFirstTest(null)
+        setCurrentDialog(null)
+    }
+
     return (
         <MainContext.Provider value = {{
-            selectedCell: selectedCell,
-            inputMethod: inputMethod,
-            methods: methods,
-            responsiveSize: responsiveSize,
-            currentDialog: currentDialog,
-            dialogs: dialogs,
-            answersRemoved: answersRemoved,
-            firstTest: firstTest,
-            setSelectedCell: setSelectedCell,
-            setInputMethod: setInputMethod,
-            setResponsiveSize: handleSizeChange,
-            setCurrentDialog: setCurrentDialog,
-            setAnswersRemoved: setAnswersRemoved,
-            setFirstTest: setFirstTest,
-
-            handleChange: handleChange,
-            handleCheck: handleCheck,
-            handleGiveAnswer: handleGiveAnswer,
-            handleRemoveCell: handleRemoveCell,
-            handleRestart: handleRestart,
-            handlePopulateCandidates: handlePopulateCandidates
+            // Solver component context
+                selectedCell: selectedCell,
+                inputMethod: inputMethod,
+                methods: methods,
+                responsiveSize: responsiveSize,
+                currentDialog: currentDialog,
+                dialogs: dialogs,
+                answersRemoved: answersRemoved,
+                firstTest: firstTest,
+            // Solver component mehtods
+                setSelectedCell: setSelectedCell,
+                setInputMethod: setInputMethod,
+                setResponsiveSize: handleSizeChange,
+                setCurrentDialog: setCurrentDialog,
+                setAnswersRemoved: setAnswersRemoved,
+                setFirstTest: setFirstTest,
+            // Input handlers
+                handleChange: handleChange,
+            // Operation handlers
+                handleCheck: handleCheck,
+                handleGiveAnswer: handleGiveAnswer,
+                handleRemoveCell: handleRemoveCell,
+                handleRestart: handleRestart,
+                handlePopulateCandidates: handlePopulateCandidates,
+            // Dialog handlers
+                deleteTest: deleteTest,
+                removeInitCandidate: removeInitCandidate,
+                testToAnswer: testToAnswer
         }} >
             {props.children}
         </MainContext.Provider>

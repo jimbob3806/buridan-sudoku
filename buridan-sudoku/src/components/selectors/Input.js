@@ -5,7 +5,7 @@ import React, {
 
 // Material-ui imports
 import {
-    Tooltip
+    Tooltip,
 } from "@material-ui/core"
 import {
     Add,

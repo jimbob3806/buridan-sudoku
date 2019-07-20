@@ -46,12 +46,12 @@ const useWatchKey = () => {
                 // client must select an option from 3 choices
                 if (mainContext.currentDialog === mainContext.dialogs.TEST) {
                     switch (letter) {
-                        case "B":
-                            return
-                        case "N":
-                            return
-                        case "M":
-                            return
+                        case "1":
+                            return mainContext.deleteTest()
+                        case "2":
+                            return mainContext.removeInitCandidate()
+                        case "3":
+                            return mainContext.testToAnswer()
                         default:
                             return
                     }
@@ -59,7 +59,7 @@ const useWatchKey = () => {
                 // Do nothing if these dialogs are open (dialog has autoFocus on
                 // accept, and may be closed using the esc key)
                 else if (mainContext.currentDialog !== null) {
-                    return
+                        return                            
                 } else {
                     switch (letter) {
                         // Watching for cell selected keys
@@ -142,7 +142,8 @@ const useWatchKey = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         mainContext.selectedCell, mainContext.inputMethod, 
-        mainContext.currentDialog, context.answer, context.candidates
+        mainContext.currentDialog, context.answer, context.candidates, 
+        context.test
     ])
 }
 

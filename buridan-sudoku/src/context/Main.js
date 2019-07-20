@@ -24,5 +24,8 @@ export default createContext({
         handleGiveAnswer: () => {},
         handleRemoveCell: () => {},
         handleRestart: () => {},
-        handlePopulateCandidates: () => {}
+        handlePopulateCandidates: () => {},
+        deleteTest: () => {},
+        removeInitCandidate: () => {},
+        testToAnswer: () => {}
 })

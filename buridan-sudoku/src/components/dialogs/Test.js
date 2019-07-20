@@ -17,7 +17,6 @@ import {
 // Own imports 
     //Context
     import MainContext from "../../context/Main"
-    import GlobalContext from "../../context/Global"
     // Components
     // Hooks
     // Style hooks
@@ -27,7 +26,6 @@ import {
 const Test = props => {
     // State and context
     const mainContext = useContext(MainContext)
-    const context = useContext(GlobalContext)
 
     //Styles
     const styles = props.styles
@@ -43,71 +41,42 @@ const Test = props => {
                 mainContext.dialogs.TEST}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            //className = {styles.notificationDialog}
+            className = {styles.notificationDialog}
         >                        
             <DialogTitle>
                 Choose an option...
             </DialogTitle>
 
+            {/* Lists may not appear as descendats of p elements (given errror),
+            so list of choices is formatted as below */}
             <DialogContent>
                 <DialogContentText>
                 {`To continue with the puzzle, there are three options to
-                complete your test:`}
-                <ol>
-                    <li>
-                        {`Delete the test numbers, and take no futher 
-                        action`}
-                    </li>
-                    <li>
-                        {`Delete the test candidates, removing the first
+                complete your test:
+                        1. Delete the test numbers, and take no futher 
+                        action
+                        2. Delete the test candidates, removing the first
                         test number (indicated in red) as a potential
-                        candidate from its cell`}
-                    </li>
-                    <li>
-                        {`Committing all the test numbers to your answer`}
-                    </li>
-                </ol>
+                        candidate from its cell
+                        3. Committing all the test numbers to your answer`}
                 </DialogContentText>
             </DialogContent>
         
             <DialogActions>
             <Button 
-                    onClick = {() => {
-                        context.puzzle.map((value, index) => {
-                            return context.setTest.add(value, index)
-                        })
-                        mainContext.setCurrentDialog(null)
-                        mainContext.setFirstTest(null)
-                    }} 
+                    onClick = {() => { mainContext.deleteTest() }} 
                     color="primary"
                 >
                     OPTION 1
                 </Button>
                 <Button 
-                    onClick = {() => {
-                        context.setCandidate.remove(
-                            context.test[mainContext.firstTest], 
-                            mainContext.firstTest)
-                        context.puzzle.map((value, index) => {
-                            return context.setTest.add(value, index)
-                        })
-                        mainContext.setCurrentDialog(null)
-                        mainContext.setFirstTest(null)
-                    }} 
+                    onClick = {() => { mainContext.removeInitCandidate() }} 
                     color="primary"
                 >
                     OPTION 2
                 </Button>
                 <Button 
-                    onClick = {() => {
-                        context.test.map((value, index) => {
-                            return value !== "0" ? 
-                                context.setAnswer.add(value, index) :
-                                null
-                        })
-                        mainContext.setCurrentDialog(null)
-                        mainContext.setFirstTest(null)
-                    }} 
+                    onClick = {() => { mainContext.testToAnswer() }} 
                     color="primary" 
                 >
                     OPTION 3
