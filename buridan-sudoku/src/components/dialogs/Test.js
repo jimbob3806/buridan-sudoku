@@ -50,16 +50,35 @@ const Test = props => {
             {/* Lists may not appear as descendats of p elements (given errror),
             so list of choices is formatted as below */}
             <DialogContent>
+
                 <DialogContentText>
-                {`To continue with the puzzle, there are three options to
-                complete your test:
-                        1. Delete the test numbers, and take no futher 
-                        action
-                        2. Delete the test candidates, removing the first
-                        test number (indicated in red) as a potential
-                        candidate from its cell
-                        3. Committing all the test numbers to your answer`}
+                    To continue with the puzzle, there are three options to 
+                    complete your test:
                 </DialogContentText>
+
+                <ol>
+
+                    <li>
+                        Delete the test numbers, and do nothing (DELETE)
+                    </li>
+
+                    <li>
+                        Delete the test number, and remove the first
+                        test number (indicated in red) as a potential
+                        candidate from its cell (REMOVE)
+                    </li>
+
+                    <li>
+                        Commit all the test numbers to your answer (ANSWER)
+                    </li>
+
+                </ ol>
+
+                <DialogContentText>
+                    Press the number matching your choice, or select a button
+                    below.
+                </DialogContentText>  
+
             </DialogContent>
         
             <DialogActions>
@@ -67,19 +86,19 @@ const Test = props => {
                     onClick = {() => { mainContext.deleteTest() }} 
                     color="primary"
                 >
-                    OPTION 1
+                    DELETE
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.removeInitCandidate() }} 
                     color="primary"
                 >
-                    OPTION 2
+                    REMOVE
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.testToAnswer() }} 
                     color="primary" 
                 >
-                    OPTION 3
+                    ANSWER
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.setCurrentDialog(null) }} 

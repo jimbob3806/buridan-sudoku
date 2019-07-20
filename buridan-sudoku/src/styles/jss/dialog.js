@@ -64,6 +64,9 @@ const dialogStyles = {
                 color: variables.neutralColor11
             },
             backgroundColor: variables.greenHighlight1,
+        },
+        "& li": {
+            color: variables.neutralColor8
         }
     }
 }
