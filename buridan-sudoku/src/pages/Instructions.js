@@ -2,26 +2,31 @@
 or another template file to get going!*/
 
 // General imports
-import React, {
-    useContext
-} from "react"
+import React from "react"
 
 // Material-ui imports
+import {
+    Paper
+} from "@material-ui/core"
 
-// Own imports
-import GlobalContext from "../context/Global"
+// Own imports 
+    // Context & States
+    // Components
+    // Hooks
+    // Style hooks
+    // Other
 
 // Component
-const Instructions = () => {
-    const context = useContext(GlobalContext)
-
-    
+const Instructions = props => {   
+    //Styles
+    const styles = props.styles 
 
     // Component render JSX
     return (
         <div>
-            Instructions
-            {context.puzzle}
+            <Paper className = {"FILL"}>
+                Test
+            </Paper>
         </div>
     )
 }

@@ -12,7 +12,7 @@ const solveStyles = {
         height: props.responsiveSize * 13,
         width: props.responsiveSize * 10,
         placeItems: "center center",
-        margin: "auto",
+        margin: `0 auto ${props.responsiveSize / 2}px auto`,
         gridTemplateColumns: "4% 55% 34% 4%",
         gridTemplateRows: "4% 8% 72% 8% 4%",
         gridColumnGap: "1%",
