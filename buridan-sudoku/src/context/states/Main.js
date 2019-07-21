@@ -188,7 +188,7 @@ const MainState = props => {
         })
     }
 
-    // Dialog handlers
+    // DIALOG HANDLERS
     const deleteTest = () => {
         // Restore test array to be equivalent to puzzle array
         context.puzzle.map((value, index) => {

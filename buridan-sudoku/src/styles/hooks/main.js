@@ -11,7 +11,9 @@ import {
     // Other JSS files
     import {
         gridStyles,
-        dialogStyles
+        dialogStyles,
+        loadStyles,
+        solveStyles
     } from "../jss/exports"
 
 // Styles
@@ -19,49 +21,19 @@ const useMainStyles = makeStyles({
     // Insert imported JSS styles
     ...gridStyles,
     ...dialogStyles,
+    ...loadStyles,
+    ...solveStyles,
     // Styling on parent component
     main: props => ({
-        // Found that rem unit did not size margins aggressively enough to fit
-        // correctly at smaller sizes
+        // Found that rem unit did not size margins aggressively enough to 
+        // fit correctly at smaller sizes
         padding: `${props.responsiveSize / 2}px 
             ${props.responsiveSize / 2}px 0`,
         margin: "auto",
         justifyContent: "center"
     }),
 
-
-
-
-    loadContainer: props => ({
-        display: "grid",
-        backgroundColor: variables.secondaryColor1,
-        "& .MuiButtonBase-root:hover": {
-            color: variables.neutralColor1,
-            backgroundColor: variables.secondaryColor4
-        },
-        height: props.responsiveSize * 11,
-        width: props.responsiveSize * 10,
-        placeItems: "center center",
-        margin: `0 auto ${props.responsiveSize / 2}px auto`,
-        gridTemplateColumns: "4% 44.5% 44.5% 4%",
-        gridTemplateRows: "2% 8.8% 2% 79.2% 4%",
-        gridColumnGap: "1%",
-        gridRowGap: "1%",
-        gridTemplateAreas: `
-            ".  .           .           ."
-            ".  play        delete      ."
-            ".  .           .           ."
-            ".  sudoku      sudoku      ."
-            ".  .           .           ."
-        `
-    }),
-    play: {
-        gridArea: "play",
-        textDecoration: "none"
-    },
-    delete: {
-        gridArea: "delete"
-    },
+    // General component styling
     buttonSingle: props => ({
         color: variables.neutralColor3,
         backgroundColor: variables.secondaryColor8,
@@ -72,32 +44,6 @@ const useMainStyles = makeStyles({
         width: props.responsiveSize * 2,
         height: props.responsiveSize / 1.2
     }),
-    
-
-
-
-
-
-    solverContainer: props => ({
-        display: "grid",
-        backgroundColor: variables.secondaryColor1,
-        height: props.responsiveSize * 13,
-        width: props.responsiveSize * 10,
-        placeItems: "center center",
-        margin: "auto",
-        gridTemplateColumns: "4% 55% 34% 4%",
-        gridTemplateRows: "4% 8% 72% 8% 4%",
-        gridColumnGap: "1%",
-        gridRowGap: "1%",
-        gridTemplateAreas: `
-            ".  .           .           ."
-            ".  operation   input       ."
-            ".  sudoku      sudoku      ."
-            ".  number      number      ."
-            ".  .           .           ."
-        `
-    }),
-
     // Styling applied to all buttonGroups
     buttonGroup: props => ({
         "& button": {
@@ -124,18 +70,8 @@ const useMainStyles = makeStyles({
         }
     }),
 
-    // Custom styling specific to each button group
-    numberSelector: {
-        gridArea: "number"
-    },
-    operationSelector: {
-        gridArea: "operation"
-    },
-    inputSelector: {
-        gridArea: "input"
-    },
-
     // Other styling
+    // sudoku used by both load, and solve, so not in a specific ../jss file
     sudoku: {
         gridArea: "sudoku"
     }
