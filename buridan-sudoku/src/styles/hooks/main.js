@@ -13,7 +13,8 @@ import {
         gridStyles,
         dialogStyles,
         loadStyles,
-        solveStyles
+        solveStyles,
+        setStyles
     } from "../jss/exports"
 
 // Styles
@@ -23,6 +24,7 @@ const useMainStyles = makeStyles({
     ...dialogStyles,
     ...loadStyles,
     ...solveStyles,
+    ...setStyles,
     // Styling on parent component
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to 
@@ -40,9 +42,14 @@ const useMainStyles = makeStyles({
         // Found that rem unit did not size digits aggressively enough to
         // fit numbers correctly at smaller sizes
         fontSize: `${props.responsiveSize / 3}px`,
-        padding: `${props.responsiveSize / 3} px`,
-        width: props.responsiveSize * 2,
-        height: props.responsiveSize / 1.2
+        padding: "auto",
+        width: props.responsiveSize * 1.8,
+        height: props.responsiveSize / 1.2,
+        "& span.MuiButton-label": {
+            // Enforcing correct display behaviour at smaller sizes
+            margin: "auto",
+            height: props.responsiveSize / 2.5
+        }
     }),
     // Styling applied to all buttonGroups
     buttonGroup: props => ({
@@ -75,7 +82,7 @@ const useMainStyles = makeStyles({
     sudoku: {
         gridArea: "sudoku"
     }
-    
+
 })
 
 // Exports
