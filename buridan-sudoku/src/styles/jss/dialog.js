@@ -9,11 +9,25 @@
 const dialogStyles = {
     dialog: props => ({
         display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
         flexWrap: "wrap",
-        padding: "1.3rem",
-        width: props.responsiveSize * 4
+        placeSelf: "center center",
+        margin: "auto",
+        "& .MuiButton-root": {  
+            // Reduce font size marginally to cope with smaller displays when
+            // there are numerous options
+            fontSize: "0.75rem",   
+            // Enforce no minWidth for dialog buttons
+            minWidth: 0
+        },
+        "& .MuiButtonBase-root": {
+            // Enforce spacing of buttons in action bar
+            padding: "0.2rem",
+            margin: "0.25rem 0.3rem"
+        },
+        "& .MuiDialogActions-root": {
+            // Wrap buttons at bottom of dialog if they are too wide
+            flexWrap: "wrap"
+        }
     }),
     // Red theme
     errorDialog: {

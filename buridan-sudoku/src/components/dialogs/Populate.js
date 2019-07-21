@@ -41,7 +41,7 @@ const PopulateDialog = props => {
                 mainContext.dialogs.POPULATE_CANDIDATES}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            className = {styles.cautionDialog}
+            className = {`${styles.cautionDialog} ${styles.dialog}`}
         >
             <DialogTitle>
                 Are you sure?

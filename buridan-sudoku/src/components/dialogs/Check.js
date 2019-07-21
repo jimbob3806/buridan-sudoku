@@ -69,7 +69,7 @@ const CheckDialog = props => {
             open = {mainContext.currentDialog === mainContext.dialogs.CHECK}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            className = {requiredStyle}
+            className = {`${requiredStyle} ${styles.dialog}`}
         >
             <DialogTitle>
                 Result

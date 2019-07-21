@@ -40,7 +40,7 @@ const Delete = props => {
             open = {mainContext.currentDialog === mainContext.dialogs.DELETE}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            className = {styles.errorDialog}
+            className = {`${styles.deleteDialog} ${styles.dialog}`}
         >
             <DialogTitle>
                 Are you sure?

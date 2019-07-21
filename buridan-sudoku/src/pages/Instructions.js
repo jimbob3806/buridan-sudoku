@@ -24,9 +24,11 @@ const Instructions = props => {
     // Component render JSX
     return (
         <div>
+
             <Paper className = {"FILL"}>
                 Test
             </Paper>
+            
         </div>
     )
 }

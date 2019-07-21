@@ -41,7 +41,7 @@ const RestartDialog = props => {
                 mainContext.dialogs.RESTART}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            className = {styles.errorDialog}
+            className = {`${styles.errorDialog} ${styles.dialog}`}
         >                        
             <DialogTitle>
                 Are you sure?

@@ -41,7 +41,7 @@ const Test = props => {
                 mainContext.dialogs.TEST}
             onEscapeKeyDown = {() => { mainContext.setCurrentDialog(null) }}
             maxWidth = "xs"
-            className = {styles.notificationDialog}
+            className = {`${styles.notificationDialog} ${styles.dialog}`}
         >                        
             <DialogTitle>
                 Choose an option...
