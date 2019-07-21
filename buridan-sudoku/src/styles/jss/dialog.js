@@ -8,9 +8,6 @@
 // alerts, and or errors
 const dialogStyles = {
     dialog: props => ({
-        display: "flex",
-        flexWrap: "wrap",
-        placeSelf: "center center",
         margin: "auto",
         "& .MuiButton-root": {  
             // Reduce font size marginally to cope with smaller displays when
