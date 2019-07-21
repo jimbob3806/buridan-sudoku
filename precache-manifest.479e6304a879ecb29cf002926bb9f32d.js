@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "37dc1f690290dcc9cd7b54c328f45423",
+    "revision": "fc9b86f6f30aafc7ce8685328b69e94a",
     "url": "/buridan-sudoku/index.html"
   },
   {
-    "revision": "bce0e5c9620c5947fba1",
+    "revision": "4bbc4ec405a5e63b202d",
     "url": "/buridan-sudoku/static/css/2.48a41c52.chunk.css"
   },
   {
-    "revision": "def644bf9baf9d613e6b",
+    "revision": "43dc8745f1dd5191d304",
     "url": "/buridan-sudoku/static/css/main.5ef8425e.chunk.css"
   },
   {
-    "revision": "bce0e5c9620c5947fba1",
-    "url": "/buridan-sudoku/static/js/2.3517e034.chunk.js"
+    "revision": "4bbc4ec405a5e63b202d",
+    "url": "/buridan-sudoku/static/js/2.43f1eb4b.chunk.js"
   },
   {
-    "revision": "def644bf9baf9d613e6b",
-    "url": "/buridan-sudoku/static/js/main.5ae66f0b.chunk.js"
+    "revision": "43dc8745f1dd5191d304",
+    "url": "/buridan-sudoku/static/js/main.63bb4ada.chunk.js"
   },
   {
     "revision": "cc70303cc9e7d1bbee34",
