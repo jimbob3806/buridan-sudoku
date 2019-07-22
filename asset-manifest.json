@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/buridan-sudoku/static/css/main.5ef8425e.chunk.css",
-    "main.js": "/buridan-sudoku/static/js/main.6aaba9e5.chunk.js",
-    "main.js.map": "/buridan-sudoku/static/js/main.6aaba9e5.chunk.js.map",
-    "runtime~main.js": "/buridan-sudoku/static/js/runtime~main.1943f373.js",
-    "runtime~main.js.map": "/buridan-sudoku/static/js/runtime~main.1943f373.js.map",
-    "static/css/2.48a41c52.chunk.css": "/buridan-sudoku/static/css/2.48a41c52.chunk.css",
-    "static/js/2.35f457c0.chunk.js": "/buridan-sudoku/static/js/2.35f457c0.chunk.js",
-    "static/js/2.35f457c0.chunk.js.map": "/buridan-sudoku/static/js/2.35f457c0.chunk.js.map",
-    "index.html": "/buridan-sudoku/index.html",
-    "precache-manifest.16eafcd6901ee34a476a157c8c8f6c08.js": "/buridan-sudoku/precache-manifest.16eafcd6901ee34a476a157c8c8f6c08.js",
-    "service-worker.js": "/buridan-sudoku/service-worker.js",
-    "static/css/2.48a41c52.chunk.css.map": "/buridan-sudoku/static/css/2.48a41c52.chunk.css.map",
-    "static/css/main.5ef8425e.chunk.css.map": "/buridan-sudoku/static/css/main.5ef8425e.chunk.css.map",
-    "static/media/index.css": "/buridan-sudoku/static/media/roboto-latin-900italic.bc833e72.woff"
+    "main.css": "/static/css/main.5ef8425e.chunk.css",
+    "main.js": "/static/js/main.68208629.chunk.js",
+    "main.js.map": "/static/js/main.68208629.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.94155858.chunk.css": "/static/css/2.94155858.chunk.css",
+    "static/js/2.00201547.chunk.js": "/static/js/2.00201547.chunk.js",
+    "static/js/2.00201547.chunk.js.map": "/static/js/2.00201547.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.74090d5c7a12ed7502afbde012ca765e.js": "/precache-manifest.74090d5c7a12ed7502afbde012ca765e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.94155858.chunk.css.map": "/static/css/2.94155858.chunk.css.map",
+    "static/css/main.5ef8425e.chunk.css.map": "/static/css/main.5ef8425e.chunk.css.map",
+    "static/media/index.css": "/static/media/roboto-latin-900italic.bc833e72.woff"
   }
 }

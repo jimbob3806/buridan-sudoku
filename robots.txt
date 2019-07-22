@@ -1,2 +1,2 @@
 User-Agent: *
-Sitemap: https://jimbob3806.github.io/buridan-sudoku/sitemap.xml
+Sitemap: https://buridansudoku.co.uk/sitemap.xml
