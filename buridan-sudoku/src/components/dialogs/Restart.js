@@ -52,7 +52,8 @@ const RestartDialog = props => {
                     {`This action will reset the ENTIRE puzzle, 
                     removing all answers, and candidates. Any 
                     candidates, or answers that you have placed WILL 
-                    be overwritten❗️`}
+                    be overwritten❗️ Press RETURN to continue, or ESC
+                    to cancel this action, or press a button below.`}
                 </DialogContentText>
             </DialogContent>
         

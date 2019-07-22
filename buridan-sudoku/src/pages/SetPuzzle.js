@@ -221,11 +221,11 @@ const SetPuzzle = props => {
                 text = {url}
             >
                 <Tooltip title = "Copy URL to clipboard!">
-                <Button 
-                    className = {`${styles.urlSave} ${styles.buttonSingle}`}
-                >
-                    <Book />
-                </Button>  
+                    <Button 
+                        className = {`${styles.urlSave} ${styles.buttonSingle}`}
+                    >
+                        <Book />
+                    </Button>  
                 </Tooltip>
             </CopyToClipboard>   
 

@@ -15,7 +15,8 @@ import {
         loadStyles,
         solveStyles,
         setStyles,
-        shareStyles
+        shareStyles,
+        instructionStyles
     } from "../jss/exports"
 
 // Styles
@@ -27,6 +28,7 @@ const useMainStyles = makeStyles({
     ...solveStyles,
     ...setStyles,
     ...shareStyles,
+    ...instructionStyles,
     // Styling on parent component
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to 
@@ -83,35 +85,7 @@ const useMainStyles = makeStyles({
     // sudoku used by both load, and solve, so not in a specific ../jss file
     sudoku: {
         gridArea: "sudoku"
-    },
-
-
-
-
-    instructionContainer: props => ({
-        display: "grid",
-        backgroundColor: variables.secondaryColor1,
-        "& .MuiButtonBase-root:hover": {
-            color: variables.neutralColor1,
-            backgroundColor: variables.secondaryColor4
-        },
-        height: props.responsiveSize * 11,
-        width: props.responsiveSize * 10,
-        placeItems: "center center",
-        margin: `0 auto ${props.responsiveSize / 2}px auto`,
-        gridTemplateColumns: "4% 44.5% 44.5% 4%",
-        gridTemplateRows: "2% 8.8% 2% 79.2% 4%",
-        gridColumnGap: "1%",
-        gridRowGap: "1%",
-        gridTemplateAreas: `
-            ".  .           .           ."
-            ".  play        delete      ."
-            ".  .           .           ."
-            ".  sudoku      sudoku      ."
-            ".  .           .           ."
-        `
-    })
-
+    }
 })
 
 // Exports

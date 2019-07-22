@@ -49,7 +49,9 @@ const Delete = props => {
             <DialogContent>
                 <DialogContentText>
                     {`This action will delete the selected sudoku, and any
-                    progress you may have made. This is NOT reversible❗️`}
+                    progress you may have made. This is NOT reversible❗️ 
+                    Press RETURN to continue, or ESC to cancel this action, 
+                    or press a button below.`}
                 </DialogContentText>
             </DialogContent>
 

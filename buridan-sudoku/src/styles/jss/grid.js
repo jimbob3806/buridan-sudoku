@@ -89,7 +89,7 @@ const gridStyles = {
         backgroundColor: variables.primaryColor4
     },
     selected: {
-        backgroundColor: variables.neutralColor4
+        backgroundColor: variables.neutralColor5
     }
 }
 

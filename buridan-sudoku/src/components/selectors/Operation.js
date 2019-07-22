@@ -53,7 +53,7 @@ const OperationSelector = props => {
                 className = {styles.button}
             >
                 <Tooltip title = "See an answer (F)">
-                    <Visibility />
+                    <Visibility className = {styles.button} />
                 </Tooltip>
             </Button>
             
@@ -62,7 +62,7 @@ const OperationSelector = props => {
                 className = {styles.button}
             >
                 <Tooltip title = "Check your answers (C)">
-                    <Check />
+                    <Check className = {styles.button} />
                 </Tooltip>
             </Button>
             

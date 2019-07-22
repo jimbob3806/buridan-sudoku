@@ -58,19 +58,19 @@ const InputSelector = props => {
         
             <ToggleButton  value = {mainContext.methods.ANSWER}>    
                 <Tooltip title = "Insert answers (Q)">           
-                    <Add />        
+                    <Add className = {styles.button}/>        
                 </Tooltip>        
             </ToggleButton>
             
             <ToggleButton value = {mainContext.methods.CANDIDATES}>
                 <Tooltip title = "Insert candidates (E)">
-                    <LiveHelp />
+                    <LiveHelp className = {styles.button}/>
                 </Tooltip>
             </ToggleButton>
 
             <ToggleButton value = {mainContext.methods.TEST}>
                 <Tooltip title = "Test a candidate (V)">
-                    <CallSplit />
+                    <CallSplit className = {styles.button}/>
                 </Tooltip>
             </ToggleButton>
 

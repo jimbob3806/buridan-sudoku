@@ -77,7 +77,7 @@ const CheckDialog = props => {
 
             <DialogContent>
                 <DialogContentText>
-                {result}
+                {`${result} Press RETURN to continue, or press OK below.`}
                 </DialogContentText>
             </DialogContent>
 

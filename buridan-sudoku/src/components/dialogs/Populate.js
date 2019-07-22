@@ -51,7 +51,9 @@ const PopulateDialog = props => {
                 <DialogContentText>
                     {`This action will populate all empty cells with
                     all candidates from 1 to 9. Any candidates that
-                    you have placed WILL be overwritten❗️`}
+                    you have placed WILL be overwritten❗️ Press RETURN to 
+                    continue, or ESC to cancel this action, or press a 
+                    button below.`}
                 </DialogContentText>
             </DialogContent>
 
