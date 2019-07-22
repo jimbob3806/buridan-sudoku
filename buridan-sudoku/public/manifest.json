@@ -3,7 +3,7 @@
   "name": "BuringSudoku",
   "icons": [
     {
-        "src": "./publicAssets/logos/buridanSudoku.png",
+        "src": "./assets/logos/buridanSudoku.png",
         "sizes": "3200x3200",
         "type": "image/png"
     },

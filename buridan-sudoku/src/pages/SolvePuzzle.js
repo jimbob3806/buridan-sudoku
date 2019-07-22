@@ -62,8 +62,7 @@ const SolvePuzzle = props => {
         })
         hash = latestPuzzle.encodedOriginal
     } 
-    const url = `https://jimbob3806.github.io/buridan-sudoku#${hash}`
-    console.log(url)
+    const url = `https://buridansudoku.co.uk#${hash}`
 
     // Component render JSX
     return (

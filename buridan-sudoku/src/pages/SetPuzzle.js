@@ -141,8 +141,7 @@ const SetPuzzle = props => {
         return sudoku
     })
     // 
-    const url = "https://buridansudoku.co.uk#" +
-        `${result(solution, puzzle)}`
+    const url = `https://buridansudoku.co.uk#${result(solution, puzzle)}`
 
     // Component render JSX - Encoded cell will populate itself with the encoded
     // puzzle if the puzzle and solution fields are filled. 
