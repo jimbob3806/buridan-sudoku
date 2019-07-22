@@ -86,6 +86,7 @@ const instructionStyles = {
         color: variables.neutralColor1,
         gridArea: "action",
         wordWrap: "break-word",
+        textAlign: "center",
         // Full width of grid area, height reliant on amount of description
         // text
         width: "100%",
