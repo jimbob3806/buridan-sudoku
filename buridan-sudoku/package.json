@@ -1,6 +1,6 @@
 {
   "name": "buridan-sudoku",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://jimbob3806.github.io/buridan-sudoku",
   "dependencies": {
