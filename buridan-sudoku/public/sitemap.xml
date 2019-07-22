@@ -6,28 +6,28 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
     <url>
-        <loc>https://jimbob3806.github.io/buridan-sudoku/solve</loc>
+        <loc>https://buridansudoku.co.uk/solve</loc>
         <lastmod>2019-06-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://jimbob3806.github.io/buridan-sudoku/load</loc>
+        <loc>https://buridansudoku.co.uk/load</loc>
         <lastmod>2019-06-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://jimbob3806.github.io/buridan-sudoku/set</loc>
+        <loc>https://buridansudoku.co.uk/set</loc>
         <lastmod>2019-06-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
-        <loc>https://jimbob3806.github.io/buridan-sudoku/instructions</loc>
+        <loc>https://buridansudoku.co.uk/instructions</loc>
         <lastmod>2019-06-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>

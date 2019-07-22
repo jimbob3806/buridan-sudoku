@@ -2,7 +2,7 @@
   "name": "buridan-sudoku",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://jimbob3806.github.io/buridan-sudoku",
+  "homepage": "https://buridansudoku.co.uk",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "@material-ui/icons": "^4.2.1",
