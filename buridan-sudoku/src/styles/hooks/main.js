@@ -16,7 +16,8 @@ import {
         solveStyles,
         setStyles,
         shareStyles,
-        instructionStyles
+        instructionStyles,
+        advertStyles
     } from "../jss/exports"
 
 // Styles
@@ -29,6 +30,7 @@ const useMainStyles = makeStyles({
     ...setStyles,
     ...shareStyles,
     ...instructionStyles,
+    ...advertStyles,
     // Styling on parent component
     main: props => ({
         // Found that rem unit did not size margins aggressively enough to 

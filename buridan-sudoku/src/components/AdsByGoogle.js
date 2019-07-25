@@ -14,7 +14,6 @@ import React, {
 // Component
 const AdsByGoogle = () => {
     // State and context
-    // const context = useContext()
 
     //Styles
 

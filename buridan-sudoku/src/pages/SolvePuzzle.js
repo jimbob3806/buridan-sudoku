@@ -100,7 +100,11 @@ const SolvePuzzle = props => {
 
             </Paper>
 
-            <AdsByGoogle />
+            <Paper className = {styles.advertContainer}>
+                
+                <AdsByGoogle />
+
+            </Paper>
 
         </div>
     )
