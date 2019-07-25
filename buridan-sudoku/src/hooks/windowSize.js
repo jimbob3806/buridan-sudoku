@@ -7,9 +7,18 @@ import {
 // Custom hook
 const useWindowSize = () => {  
     // State for windows size
+    const initViewportWidth = window.innerWidth
+    const initViewportHeight = window.innerHeight
     const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight
+        // Note that initial value of windowSize width and height values are set
+        // using pre-defined constants (initViewportWidth/Height), since calling
+        // calling window.innerWidth/Height was causing a deprecation warning
+        // in the developer console. window.screen.availHeight/Width could have
+        // been used instead, but this did not scale the layout correctly 
+        // at all sizes, so the above workaround is used instead to avoid the 
+        // depracation error.
+        width: initViewportWidth,
+        height: initViewportHeight
     })
     // Handle change of window size
     const handleSizeChange = () => {
