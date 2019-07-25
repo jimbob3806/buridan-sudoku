@@ -1,6 +1,3 @@
-/*Follow the order laid out below in all relevant JS files - just copy this, 
-or another template file to get going!*/
-
 // General imports
 import React, {
     useContext
@@ -31,7 +28,8 @@ import {
         CheckDialog,
         RestartDialog,
         PopulateDialog,
-        TestDialog
+        TestDialog,
+        AdsByGoogle
     } from "../components/exports"
     // Hooks
     import useWatchKey from "../hooks/watchKey"
@@ -49,6 +47,9 @@ const SolvePuzzle = props => {
 
     // Single rxjs observable for all keyboard inputs
     useWatchKey()
+
+    // Helper functions
+    const shareButtonSize = mainContext.responsiveSize * 1.5
 
     // Pre-render
     // Finding most recent puzzle in localStorage, and returning the hash to
@@ -76,8 +77,9 @@ const SolvePuzzle = props => {
                     className = {styles.facebook}
                 >
                     <FacebookIcon
-                    size = {mainContext.responsiveSize * 1.5}
-                    round />
+                    size = {shareButtonSize}
+                    round = {true}                        
+                    />
                 </FacebookShareButton>
 
                 <TwitterShareButton
@@ -86,8 +88,9 @@ const SolvePuzzle = props => {
                     className = {styles.twitter}
                 >
                     <TwitterIcon
-                    size = {mainContext.responsiveSize * 1.5}
-                    round />
+                    size = {shareButtonSize}
+                    round = {true}
+                    />
                 </TwitterShareButton>   
 
             </Paper>         
@@ -107,6 +110,8 @@ const SolvePuzzle = props => {
                 <NumberSelector styles = {styles} />
 
             </Paper>
+
+            <AdsByGoogle />
 
         </div>
     )
