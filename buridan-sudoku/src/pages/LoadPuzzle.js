@@ -115,7 +115,10 @@ const LoadPuzzle = props => {
                             }}
                             className = {styles.play}
                         >
-                            <Button className = {styles.buttonSingle}>
+                            <Button 
+                                className = {styles.buttonSingle}
+                                aria-label = "playPuzzle"
+                            >
                                 PLAY
                             </Button>
                         </Link>
@@ -135,6 +138,7 @@ const LoadPuzzle = props => {
                                 mainContext.setCurrentDialog(
                                     mainContext.dialogs.DELETE)
                             }}
+                            aria-label = "deletePuzzle"
                         >
                             DELETE
                         </Button>

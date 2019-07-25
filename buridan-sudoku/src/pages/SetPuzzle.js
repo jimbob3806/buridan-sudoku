@@ -158,6 +158,7 @@ const SetPuzzle = props => {
                 margin = "normal"
                 type = "number"
                 variant = "outlined"
+                aria-label = "setSolution"
             />
 
             <TextField 
@@ -167,6 +168,7 @@ const SetPuzzle = props => {
                 margin = "normal"
                 type = "number"
                 variant = "outlined"
+                aria-label = "setPuzzle"
             />
 
             <TextField 
@@ -176,6 +178,7 @@ const SetPuzzle = props => {
                 margin = "normal"
                 type = "string"
                 variant = "outlined"
+                aria-label = "setEncoded"
             />
 
             <div className = {styles.sudoku}>
@@ -192,7 +195,10 @@ const SetPuzzle = props => {
                 className = {styles.save}
             >
                 <Tooltip title = "Redirects to Load Puzzle page!">
-                    <Button className = {styles.buttonSingle}>
+                    <Button 
+                        className = {styles.buttonSingle}
+                        aria-label = "savePuzzle"
+                    >
                             SAVE
                     </Button>
                 </Tooltip>
@@ -207,6 +213,7 @@ const SetPuzzle = props => {
                         const newDisplay = selectedDisplay ? 0 : 1
                         return setSelectedDisplay(newDisplay) 
                     }}
+                    aria-label = "toggleDisplay"
                 >
                     {selectedDisplay ? SOLUTION : PUZZLE}
                 </Button>
@@ -222,6 +229,7 @@ const SetPuzzle = props => {
                 <Tooltip title = "Copy URL to clipboard!">
                     <Button 
                         className = {`${styles.urlSave} ${styles.buttonSingle}`}
+                        aria-label = "copyPuzzle"
                     >
                         <Book />
                     </Button>  
