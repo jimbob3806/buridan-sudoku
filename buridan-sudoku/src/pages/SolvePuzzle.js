@@ -1,7 +1,5 @@
 // General imports
-import React, {
-    useContext
-} from "react"
+import React from "react"
 import {
     FacebookShareButton,
     TwitterShareButton
@@ -18,7 +16,6 @@ import {
 
 // Own imports 
     //Context
-    import MainContext from "../context/Main"
     // Components
     import {
         SudokuGrid,
@@ -39,7 +36,6 @@ import {
 // Component
 const SolvePuzzle = props => {
     // State and context
-    const mainContext = useContext(MainContext)
     const localPuzzles = useGetPuzzles()
 
     // Styles
@@ -47,9 +43,6 @@ const SolvePuzzle = props => {
 
     // Single rxjs observable for all keyboard inputs
     useWatchKey()
-
-    // Helper functions
-    const shareButtonSize = mainContext.responsiveSize * 1.5
 
     // Pre-render
     // Finding most recent puzzle in localStorage, and returning the hash to
@@ -76,10 +69,8 @@ const SolvePuzzle = props => {
                     quote = {"Buridan Sudoku"}
                     className = {styles.facebook}
                 >
-                    <FacebookIcon
-                    size = {shareButtonSize}
-                    round = {true}                        
-                    />
+                    {/*Icon size set dynamically by jss*/}
+                    <FacebookIcon round = {true} />
                 </FacebookShareButton>
 
                 <TwitterShareButton
@@ -87,10 +78,8 @@ const SolvePuzzle = props => {
                     quote = {"Buridan Sudoku"}
                     className = {styles.twitter}
                 >
-                    <TwitterIcon
-                    size = {shareButtonSize}
-                    round = {true}
-                    />
+                    {/*Icon size set dynamically by jss*/}
+                    <TwitterIcon round = {true} />
                 </TwitterShareButton>   
 
             </Paper>         
