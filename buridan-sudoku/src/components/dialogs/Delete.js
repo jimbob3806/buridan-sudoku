@@ -58,6 +58,7 @@ const Delete = props => {
             <DialogActions>
                 <Button 
                     onClick = {() => { mainContext.setCurrentDialog(null) }} 
+                    aria-label = "cancel"
                     color="primary"
                 >
                     CANCEL
@@ -68,6 +69,7 @@ const Delete = props => {
                         localStorage.removeItem(mainContext.puzzleKey)
                         mainContext.setCurrentDialog(null)
                     }} 
+                    aria-label = "ok"
                     color="primary" 
                     autoFocus
                 >

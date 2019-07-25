@@ -42,6 +42,7 @@ const OperationSelector = props => {
             <Button 
                 onClick = {() => mainContext.handleRemoveCell()}
                 className = {styles.button}
+                aria-label = "removeCell"
             >
                 <Tooltip title = "Remove a cell (R)">
                     <Remove className = {styles.button} />
@@ -51,6 +52,7 @@ const OperationSelector = props => {
             <Button 
                 onClick = {() => mainContext.handleGiveAnswer()}
                 className = {styles.button}
+                aria-label = "answerToCell"
             >
                 <Tooltip title = "See an answer (F)">
                     <Visibility className = {styles.button} />
@@ -60,6 +62,7 @@ const OperationSelector = props => {
             <Button 
                 onClick = {() => mainContext.handleCheck()}
                 className = {styles.button}
+                aria-label = "checkAllAnswers"
             >
                 <Tooltip title = "Check your answers (C)">
                     <Check className = {styles.button} />
@@ -70,6 +73,7 @@ const OperationSelector = props => {
                 onClick = {() => mainContext.setCurrentDialog(
                     mainContext.dialogs.RESTART)}
                 className = {styles.button}
+                aria-label = "restartPuzzle"
             >
                 <Tooltip title = "Restart (Z)">
                     <Replay className = {styles.button} />
@@ -80,6 +84,7 @@ const OperationSelector = props => {
                 onClick = {() => mainContext.setCurrentDialog(
                     mainContext.dialogs.POPULATE_CANDIDATES)}
                 className = {styles.button}
+                aria-label = "addAllCandidates"
             >
                 <Tooltip title = "Add all candidates (X)">
                     <Apps className = {styles.button} />

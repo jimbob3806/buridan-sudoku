@@ -56,19 +56,28 @@ const InputSelector = props => {
             className = {`${styles.buttonGroup} ${styles.inputSelector}`}
         >
         
-            <ToggleButton  value = {mainContext.methods.ANSWER}>    
+            <ToggleButton  
+                value = {mainContext.methods.ANSWER}
+                aria-label = "insertAnswer"
+            >    
                 <Tooltip title = "Insert answers (Q)">           
                     <Add className = {styles.button}/>        
                 </Tooltip>        
             </ToggleButton>
             
-            <ToggleButton value = {mainContext.methods.CANDIDATES}>
+            <ToggleButton 
+                value = {mainContext.methods.CANDIDATES}
+                aria-label = "insertCandidate"
+            >
                 <Tooltip title = "Insert candidates (E)">
                     <LiveHelp className = {styles.button}/>
                 </Tooltip>
             </ToggleButton>
 
-            <ToggleButton value = {mainContext.methods.TEST}>
+            <ToggleButton 
+                value = {mainContext.methods.TEST}
+                aria-label = "testCandidate"
+            >
                 <Tooltip title = "Test a candidate (V)">
                     <CallSplit className = {styles.button}/>
                 </Tooltip>

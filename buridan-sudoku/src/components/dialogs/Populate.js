@@ -59,7 +59,8 @@ const PopulateDialog = props => {
 
             <DialogActions>
                 <Button 
-                    onClick = {() => { mainContext.setCurrentDialog(null) }} 
+                    onClick = {() => { mainContext.setCurrentDialog(null) }}
+                    aria-label = "cancel" 
                     color="primary"
                 >
                     CANCEL
@@ -69,6 +70,7 @@ const PopulateDialog = props => {
                         mainContext.setCurrentDialog(null)
                         mainContext.handlePopulateCandidates()
                     }} 
+                    aria-label = "ok"
                     color="primary" 
                     autoFocus
                 >

@@ -35,6 +35,7 @@ const NumberSelector = props => {
                 value = {`${number}`}
                 key = {number}
                 onClick = {() => mainContext.handleChange(number)}
+                aria-label = {`number${number}`}
             >
                 {number}
             </ToggleButton>

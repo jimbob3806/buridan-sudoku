@@ -84,6 +84,7 @@ const CheckDialog = props => {
             <DialogActions>
                 <Button 
                     onClick = {() => { mainContext.setCurrentDialog(null) }} 
+                    aria-label = "ok"
                     autoFocus
                 >
                     OK

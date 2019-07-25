@@ -61,6 +61,7 @@ const RestartDialog = props => {
                 <Button 
                     onClick = {() => { mainContext.setCurrentDialog(null) }} 
                     color="primary"
+                    aria-label = "cancel"
                 >
                     CANCEL
                 </Button>
@@ -69,6 +70,7 @@ const RestartDialog = props => {
                         mainContext.setCurrentDialog(null)
                         mainContext.handleRestart()
                     }} 
+                    aria-label = "ok"
                     color="primary" 
                     autoFocus
                 >

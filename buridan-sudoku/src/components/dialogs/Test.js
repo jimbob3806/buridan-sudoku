@@ -84,24 +84,28 @@ const Test = props => {
             <DialogActions>
             <Button 
                     onClick = {() => { mainContext.deleteTest() }} 
+                    aria-label = "delete"
                     color="primary"
                 >
                     DELETE
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.removeInitCandidate() }} 
+                    aria-label = "remove"
                     color="primary"
                 >
                     REMOVE
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.testToAnswer() }} 
+                    aria-label = "answer"
                     color="primary" 
                 >
                     ANSWER
                 </Button>
                 <Button 
                     onClick = {() => { mainContext.setCurrentDialog(null) }} 
+                    aria-label = "cancel"
                     color="primary" 
                     autoFocus
                 >
