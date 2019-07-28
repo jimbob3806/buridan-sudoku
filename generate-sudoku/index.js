@@ -1,0 +1,1 @@
+const generateSolution = require("./generateSolution")

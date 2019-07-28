@@ -1,0 +1,26 @@
+{
+  "name": "generate-sudoku",
+  "version": "1.0.0",
+  "description": "A sudoku generator, which grades resultant puzzles based on the overall \"entropy\" of the sudoku.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimbob3806/buridan-sudoku.git"
+  },
+  "keywords": [
+    "sudoku",
+    "puzzle",
+    "generator",
+    "grader",
+    "creator"
+  ],
+  "author": "James Reid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimbob3806/buridan-sudoku/issues"
+  },
+  "homepage": "https://github.com/jimbob3806/buridan-sudoku#readme"
+}
