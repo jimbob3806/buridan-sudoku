@@ -17,10 +17,22 @@
     "grader",
     "creator"
   ],
-  "author": "James Reid",
+  "author": "James Reid <jamesreid3806@gmail.com> (https://buridansudoku.co.uk)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jimbob3806/buridan-sudoku/issues"
   },
-  "homepage": "https://github.com/jimbob3806/buridan-sudoku#readme"
+  "homepage": "https://github.com/jimbob3806/buridan-sudoku#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
+    "configstore": "^5.0.0",
+    "figlet": "^1.2.3",
+    "inquirer": "^6.5.0",
+    "minimist": "^1.2.0"
+  },
+  "bin": {
+      "buridan-sudoku": "./index.js"
+  }
 }
