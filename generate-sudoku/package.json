@@ -33,6 +33,6 @@
     "minimist": "^1.2.0"
   },
   "bin": {
-      "buridan-sudoku": "./index.js"
+    "buridan-sudoku": "./index.js"
   }
 }

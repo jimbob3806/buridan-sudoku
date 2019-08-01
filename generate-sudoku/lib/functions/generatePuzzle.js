@@ -1,5 +1,5 @@
 // Own imports
-const { insertAnswer } = require("./insertAnswer")
+const { insertAnswer } = require("../utils/insertAnswer")
 const { solvePuzzle } = require("./solvePuzzle")
 
 const step = (puzzle, cell) => {

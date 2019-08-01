@@ -1,13 +1,6 @@
 // Own imports
 const { solvePuzzle } = require("./solvePuzzle")
-
-// HELPER FUNCTIONS
-// Simple reduce function to sum the values in an array
-const sumArr = arr => {
-    return arr.reduce((acc, cur) => {
-        return acc + cur
-    }, 0)
-}
+const { sumArray } = require("../utils/sumArray")
 
 // Find treeSize of the sudoku puzzle, and return relevant summary statistics -
 // treeSize or "entropy" of the puzzle may be used to calculate the difficulty 
@@ -21,14 +14,14 @@ const treeSize = (sudoku, sampleSize = 50) => {
     for (let x = 0; x < sampleSize; x ++) {
         treeSizeArr.push(solvePuzzle([sudoku]).sumTreeSize)
     }
-    const sum = sumArr(treeSizeArr)
+    const sum = sumArray(treeSizeArr)
     const mean = sum / sampleSize
     // Array of the squares of the deviations from the mean value
     const squareDevMeanArr = treeSizeArr.map(value => {
         return (mean - value) ** 2
     })
     // Sum of the square of the deviaitions from the mean
-    const sumSquareDevMean = sumArr(squareDevMeanArr)
+    const sumSquareDevMean = sumArray(squareDevMeanArr)
     // Std deviation calc with Bassels correction given that this is a sample 
     // of an assumed normal population
     const stdDev = Math.sqrt(sumSquareDevMean / (sampleSize - 1))

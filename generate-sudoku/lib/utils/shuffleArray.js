@@ -43,17 +43,11 @@ const shuffleArray = (array, seed) => {
     return shuffledArray
 }
 
-// Returns 2 random shuffled arrays of indexes for creating the solution, and 
+// Returns shuffled array of indexes for creating the solution, and 
 // then removing clues to create the puzzle
 const shuffleIndexArray = seed => {
-    // Array for generating solution
-    const solutionArray = shuffleArray(sudokuIndexArray(), seed)
-    // Array of generating puzzle
-    const puzzleArray = shuffleArray(solutionArray, seed)
-    return {
-        solutionArray: solutionArray,
-        puzzleArray: puzzleArray
-    }
+    const shuffledArray = shuffleArray(sudokuIndexArray(), seed)
+    return shuffledArray
 }
 
 // Exports

@@ -8,7 +8,7 @@ const inquirer = require("inquirer")
 const CLI = require("clui")
 
 // Own imports
-const generateSolution = require("./lib/generateSolution")
+const { generateSudoku } = require("./lib/generateSudoku")
 
 // Functions
 const _initCli = () => {
@@ -32,7 +32,7 @@ const _runCli = async () => {
         }
     ]
     const result = await inquirer.prompt(questions)
-    console.log(result)
+    console.log(generateSudoku(2))
 }
 
 // Clui CLI optimization

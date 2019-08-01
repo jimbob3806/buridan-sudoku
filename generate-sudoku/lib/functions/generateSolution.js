@@ -1,12 +1,12 @@
 // Own imports
-const { emptySudoku } = require("./utils/emptySudoku")
+const { emptySudoku } = require("../utils/emptySudoku")
 const {
     candidates,
     columnCandidates,
     rowCandidates,
     boxCandidates
-} = require("./utils/fetchCell")
-const { insertAnswer } = require ("./utils/insertAnswer")
+} = require("../utils/fetchCell")
+const { insertAnswer } = require ("../utils/insertAnswer")
 
 // Reduces solution to a bool value, returning true if the solution is complete
 // (i.e. no cells have a value of 0)
@@ -101,11 +101,14 @@ const generateSolution = (
     recursionCounter = 0
 ) => {
     const isComplete = checkComplete(solution)
-    if (isComplete || recursionCounter >= 1000) {
-        // Return solution if recursion has reached 1000. This allows the
-        // calling function to circumvent call stack size, be either calling 
+    if (isComplete || recursionCounter >= 100) {
+        // Return solution if recursion has reached 100. This allows the
+        // calling function to circumvent call stack size, by either calling 
         // generateSolution again with currentSolution as an argument, or by
-        // re-shuffling the indexArray to generate a new sudoku
+        // re-shuffling the indexArray to generate a new sudoku. This also
+        // allows the calling argument to finely control how many recursions
+        // are made before an index array reshuffle, allowing for control over
+        // the speed at which the function(s) execute
         return {
             indexArray: indexArray,
             currentSolution: solution,
@@ -128,4 +131,6 @@ const generateSolution = (
 }
 
 // Exports
-module.exports = generateSolution
+module.exports = {
+    generateSolution: generateSolution
+}

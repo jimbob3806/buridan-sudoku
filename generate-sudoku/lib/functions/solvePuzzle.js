@@ -1,6 +1,6 @@
 // Own imports
-const { candidates } = require("./utils/fetchCell")
-const { insertAnswer } = require("./insertAnswer")
+const { candidates } = require("../utils/fetchCell")
+const { insertAnswer } = require("../utils/insertAnswer")
 
 // Takes single puzzle, and returns an array of possible next puzzles based on
 // cell with the least possible candidates (selects random cell if many cells
