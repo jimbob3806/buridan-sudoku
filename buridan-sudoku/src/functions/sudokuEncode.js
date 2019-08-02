@@ -72,7 +72,10 @@ const decode = (encoded = "") => {
 
 const encodeBase65 = (decimal, base65 = "", exponent = null) => {
     // Returns false when decimal goes to 0
-    if (!decimal) {
+    // Check that exponent goes to -1 also, to ensure that ALL exponents are 
+    // evaluated, even if decimal is already at 0, thus ensuring that trailing
+    // 0s are included
+    if (!decimal && exponent === -1) {
         return base65
     } if (exponent == null) {
         // Finding largest exponent required for encoding/decoding
@@ -93,7 +96,9 @@ const encodeBase65 = (decimal, base65 = "", exponent = null) => {
 }
 
 const decodeBase65 = (base65, decimal = 0, exponent = null) => {
-    if (base65 === "") {
+    // Check that exponent goes to -1, to ensure that ALL exponents are 
+    // evaluated
+    if (base65 === "" && exponent === -1) {
         return decimal
     } if (exponent == null) {
         // Finding largest exponent required for encoding/decoding
