@@ -11,16 +11,16 @@ const populationBenchmark = sampleSize => {
     for (let x = 1; x < sampleSize; x ++) {
         seedArray.push(seedArray[0] + x)
     }
-    const treeSizeArr = seedArray.map(seed => {
+    const treeSizeArray = seedArray.map(seed => {
         return generateSudoku(seed).meanTreeSize
     })
     // Sum of individual values in the array
-    const sum = sumArray(treeSizeArr)
+    const sum = sumArray(treeSizeArray)
     // Sum of the squares of the individual values in the array
-    const sumSquares = sumArray(treeSizeArr.map(val => { return val ** 2 }))
+    const sumSquares = sumArray(treeSizeArray.map(val => { return val ** 2 }))
     const mean = sum / sampleSize
     // Array of the squares of the deviations from the mean value
-    const squareDevMeanArr = treeSizeArr.map(value => {
+    const squareDevMeanArr = treeSizeArray.map(value => {
         return (mean - value) ** 2
     })
     // Sum of the square of the deviaitions from the mean
@@ -29,7 +29,7 @@ const populationBenchmark = sampleSize => {
     // of an assumed normal population
     const stdDev = Math.sqrt(sumSquareDevMean / (sampleSize - 1))
     return [Math.round(mean), Math.round(stdDev), sum, 
-        sumSquares, seedArray[0], treeSizeArr]
+        sumSquares, seedArray[0], treeSizeArray]
 }
 
 const updatePopulation = (sampleSize, sampleSum, sampleSumSquares) => {
@@ -69,6 +69,19 @@ const updatePopulation = (sampleSize, sampleSum, sampleSumSquares) => {
 
 }
 
+const updateRaw = rawTreeSizeArray => {
+    const rawJSON = 
+        JSON.parse(fs.readFileSync(`${__dirname}/log/raw.json`))
+    const data = {
+        treeSizeArray: [...rawJSON.treeSizeArray, ...rawTreeSizeArray]
+    }
+    const jsonData = JSON.stringify(data)
+    fs.writeFileSync(
+        `${__dirname}/log/raw.json`, 
+        jsonData
+    )
+}
+
 const logBenchmark = sampleSize => {
     const [mean, stdDev, sum, sumSquares, startSeed, rawTreeSizes] = 
         populationBenchmark(sampleSize)
@@ -86,6 +99,7 @@ const logBenchmark = sampleSize => {
         `${__dirname}/log/dump/${startSeed}_${sampleSize}.json`, 
         jsonData
     )
+    updateRaw(rawTreeSizes)
     return updatePopulation(sampleSize, sum, sumSquares)
 }
 
