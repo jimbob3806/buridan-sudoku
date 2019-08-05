@@ -1,32 +1,25 @@
 #!/usr/bin/env node
 
 // General imports
-const chalk = require("chalk")
 const clear = require("clear")
-const figlet = require("figlet")
 const inquirer = require("inquirer")
-const CLI = require("clui")
 const fs = require("fs")
 
 // Own imports
 const { batchGenerate } = require("./lib/generateSudoku")
 const { systemBenchmark } = require("./lib/benchmarks/system")
-const { batchBenchmark } = require("./lib/benchmarks/population")
 const {
-    defaultRunData,
     defaultRunJSON
 } = require("./cli/defaultRunJSON")
 const { 
-    progressBar,
-    bottomUi,
     divider,
     banner
 } = require("./cli/ui")
 const {
     primaryQuestion,
-    systemBenchmarkQuestion,
-    populationBenchmarkQuestion,
     generateSudokuQuestion,
+    solvePuzzleQuestion,
+    gradePuzzleQuestion,
     confirm
 } = require("./cli/inquirerQus")
 
@@ -38,14 +31,6 @@ const cliBody = async () => {
         case ("BENCH_SYS"):
             choiceOptions = {
                 FUNCTION: systemBenchmark,
-                ARGS: await inquirer.prompt(systemBenchmarkQuestion),
-                ...await inquirer.prompt(confirm("Are you sure?"))
-            }
-            break
-        case ("BENCH_POP"):
-            choiceOptions = {
-                FUNCTION: batchBenchmark,
-                ARGS: await inquirer.prompt(populationBenchmarkQuestion),
                 ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break

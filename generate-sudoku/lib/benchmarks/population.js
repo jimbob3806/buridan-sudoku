@@ -4,7 +4,7 @@ const fs = require("fs")
 // Own imports
 const { generateSudoku } = require("../generateSudoku")
 const { sumArray } = require("../utils/sumArray")
-const systemJSON = require("./log/system.json")
+const { cliConfig } = require("../../cli/config")
 
 const populationBenchmark = sampleSize => {
     let seedArray = [Math.floor(Math.random() * (10 ** 6))]
@@ -121,7 +121,7 @@ new population summary statistics:`
         return console.log(populationJSON)
     } else {
         timeRemaining = 
-            batchSize * batchesRemaining * systemJSON.averageTime
+            batchSize * batchesRemaining * cliConfig.get("systemAverageTime")
         console.log(`Started batch at ${Date()}
 ${batchesRemaining} batches remaining
 Estimated time remaining: ${timeRemaining} seconds`)

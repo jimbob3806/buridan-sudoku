@@ -5,14 +5,19 @@ const fs = require("fs")
 const { populationBenchmark } = require("./population")
 const { pushRunJSON } = require("../../cli/pushRunJSON")
 const { estTime } = require("../../cli/estTime")
-const systemJSON = require("./log/system.json")
+const { cliConfig } = require("../../cli/config")
 const populationJSON = require("./log/population.json")
 
 // CLI EXECUTABLE FUNCTION
-const systemBenchmark = (sampleSize = 10) => {
+const systemBenchmark = (
+    // System benchmark sample size may only be altered by the cli user by
+    // altering the default config
+    sampleSize = cliConfig.get("systemBenchmarkSampleSize")
+) => {
     // Initiate run.json with function context information, and runData
     // object which may be changed  throughout this function, and pushed to
     // run.json for rendering in the cli using pushRunJSON
+    const currentSystemAverageTime = cliConfig.get("systemAverageTime")
     const runData = {
         // Any odd spacing in template strings accomodate for layout in the cli
         CURRENT_FUNCTION: "systemBenchmark",
@@ -23,31 +28,34 @@ const systemBenchmark = (sampleSize = 10) => {
         MESSAGE: "Function is starting, please wait...",
         PROGRESS: 0,
         START_TIME: new Date(),
-        EST_END_TIME: estTime(sampleSize * systemJSON.averageTime),
+        EST_END_TIME: estTime(sampleSize * currentSystemAverageTime),
         RESULT: null,
         END_TIME: null
     }
     pushRunJSON(runData)
+    // Track process time in seconds
     const startTime = process.hrtime()[0]
     let sumSampleTreeSize = 0
     for (let x = 1; x <= sampleSize; x ++) {
+        // Generate a sudoku, and update the console to provide feedback to the
+        // cli user
         sumSampleTreeSize = sumSampleTreeSize + populationBenchmark(1)[0]
         runData.MESSAGE = `${x} of ${sampleSize} samples complete`
         runData.PROGRESS = (x / sampleSize) * 100
         pushRunJSON(runData)
     }
     const endTime = process.hrtime()[0]
+    // Work out an average time for generating a sudoku based on the mean time
+    // for generating the above puzzles, and the mean treeSize of the generated
+    // puzzles compared to the populationmean of treeSize
     const sampleMean = sumSampleTreeSize / sampleSize
     const correction =  sampleMean / populationJSON.populationMeanTreeSize
     const averageTime = Math.round(
         (endTime - startTime) / (sampleSize * correction)
     )
-    const data = { averageTime: averageTime }
-    const jsonData = JSON.stringify(data)
-    fs.writeFileSync(
-        `${__dirname}/log/system.json`, 
-        jsonData
-    )
+    // Set new calculated averageTime to the configstore
+    cliConfig.set("systemAverageTime", averageTime)
+    // Render result to console
     runData.RESULT =     `Benchmark completed in ${endTime - startTime} seconds
                           System average time: ${averageTime} seconds
                           This time is an average/estimated time for the 

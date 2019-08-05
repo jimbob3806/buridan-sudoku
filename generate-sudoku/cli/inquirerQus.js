@@ -1,3 +1,6 @@
+// Own imports
+const { cliConfig } = require("./config")
+
 const primaryChoices = [
     {
         name: "Benchmark my system",
@@ -5,14 +8,24 @@ const primaryChoices = [
         short: "Benchmark system"
     },
     {
-        name: "Benchmark population statistics",
-        value: "BENCH_POP",
-        short: "Benchmark population"
-    },
-    {
         name: "Generate some sudokus",
         value: "GEN_SUDOKU",
-        short: "Generate sudoku"
+        short: "Generate sudokus"
+    },
+    {
+        name: "Solve some sudokus",
+        value: "SOLVE_SUDOKU",
+        short: "Solve sudokus"
+    },
+    {
+        name: "Grade some sudokus",
+        value: "GRADE_SUDOKU",
+        short: "Grade sudokus"
+    },
+    {
+        name: "Change default config",
+        value: "CHANGE_CONFIG",
+        short: "Change Config"
     },
     {
         name: "I'm finished, please let me go",
@@ -42,7 +55,7 @@ const generateSudokuChoices = [
         short: "Standard deviation tree size"
     },
     {
-        name: "Sample size used for finding mean tree size",
+        name: "Sample size used for finding tree size",
         value: "treeSizeSampleSize",
         short: "Sample size"
     },
@@ -110,7 +123,7 @@ const generateSudokuQuestion = [
         message: "How many (1-1000)",
         name: "NUM_OF_SUDOKU",
         type: "number",
-        default: 100,
+        default: cliConfig.get("numberOfSudoku"),
         filter: input => {
             return (input > 1000 || input < 1) ? 10 : input
         }
@@ -129,44 +142,29 @@ const generateSudokuQuestion = [
         name: "FIELDS",
         type: "checkbox",
         choices: generateSudokuChoices,
-        default: [
-            "version",
-            "seed",
-            "puzzleGrade",
-            "encodedSudoku",
-            "createdAt"
-        ]
-    }
-]
-const systemBenchmarkQuestion = [
-    {
-        message: "Sample size (1-50)?",
-        name: "SAMPLE_SIZE",
-        type: "number",
-        default: 10,
-        filter: input => {
-            return (input > 50 || input < 1) ? 10 : input
-        }
-    }
-]
-const populationBenchmarkQuestion = [
-    {
-        message: "Batch size (1-100)?",
-        name: "BATCH_SIZE",
-        type: "number",
-        default: 10,
-        filter: input => {
-            return (input > 100 || input < 1) ? 10 : input
-        }
+        default: cliConfig.get("sudokuFields")
     },
     {
-        message: "Number of batches (1-100)",
-        name: "NUMBER_OF_BATCHES",
-        type: "number",
-        default: 10,
-        filter: input => {
-            return (input > 100 || input < 1) ? 10 : input
-        }
+        message: "Relative path to dir. for sudokus JSON file to be saved",
+        name: "PATH",
+        type: "input",
+        default: cliConfig.get("generateSudokuPath")
+    }
+]
+const solvePuzzleQuestion = [
+    {
+        message: "Relative path to JSON file containing puzzles to be solved",
+        name: "PATH",
+        type: "input",
+        default: cliConfig.get("solvePuzzlePath")
+    }
+]
+const gradePuzzleQuestion = [
+    {
+        message: "Relative path to JSON file containing puzzles to be graded",
+        name: "PATH",
+        type: "input",
+        default: cliConfig.get("gradePuzzlePath")
     }
 ]
 
@@ -183,9 +181,9 @@ const confirm = message => {
 module.exports = {
     // QUESTIONS
     primaryQuestion: primaryQuestion,
-    systemBenchmarkQuestion: systemBenchmarkQuestion,
-    populationBenchmarkQuestion: populationBenchmarkQuestion,
     generateSudokuQuestion: generateSudokuQuestion,
+    solvePuzzleQuestion: solvePuzzleQuestion,
+    gradePuzzleQuestion: gradePuzzleQuestion,
     // CONFRIMATION
     confirm: confirm
 }

@@ -97,14 +97,23 @@ const generateSudoku = (
     }
 }
 
-const batchGenerate = (puzzlesRemaining, seed, fields, path = null) => {
+const batchGenerate = (
+    puzzlesRemaining, 
+    seed, 
+    fields, 
+    dir, 
+    path = null
+) => {
     // batchGenerate always called WITHOUT path, so if path is null, then the
     // destination file for sudokus generated may be assumed to not exist, as
-    // each file is unique to number of sudokus, inital seed, and date executed
+    // each file is unique to number of sudokus, inital seed, and date executed.
+    // batchGenerate will always be called with a dir, representing the
+    // directory to which the resultant JSON file should be saved. The default
+    // value of dir is set by cliConfig configstore as "./"
     if (!path) {
         const newFilename = 
             `${puzzlesRemaining}_${seed}_${new Date().getTime()}.json`
-        const newPath = `${__dirname}/../out/${newFilename}`
+        const newPath = `${process.cwd()}/${dir}/${newFilename}`
         const sudokuData = {
             sudokus: []
         }
@@ -112,7 +121,7 @@ const batchGenerate = (puzzlesRemaining, seed, fields, path = null) => {
         // create the destination file for sudokus
         fs.writeFileSync(newPath, sudokuJSON)
         // Continue with function execution with newPath populated...
-        return batchGenerate(puzzlesRemaining, seed, fields, newPath)
+        return batchGenerate(puzzlesRemaining, seed, fields, dir, newPath)
     } else if (puzzlesRemaining <= 0) {
         return
     } else {
@@ -130,7 +139,7 @@ const batchGenerate = (puzzlesRemaining, seed, fields, path = null) => {
         }
         const sudokuJSON = JSON.stringify(sudokuData)
         fs.writeFileSync(path, sudokuJSON)
-        return batchGenerate(puzzlesRemaining - 1, seed + 1, fields, path)
+        return batchGenerate(puzzlesRemaining - 1, seed + 1, fields, dir, path)
     }
 }
 

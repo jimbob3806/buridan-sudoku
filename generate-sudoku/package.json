@@ -1,6 +1,6 @@
 {
   "name": "generate-sudoku",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "A sudoku generator, which grades resultant puzzles based on the overall \"entropy\" of the sudoku.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jimbob3806/buridan-sudoku/tree/master/generate-sudoku"
+    "url": "git+https://github.com/jimbob3806/buridan-sudoku"
   },
   "keywords": [
     "sudoku",
