@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jimbob3806/buridan-sudoku.git"
+    "url": "git+https://github.com/jimbob3806/buridan-sudoku/tree/master/generate-sudoku"
   },
   "keywords": [
     "sudoku",
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/jimbob3806/buridan-sudoku/issues"
   },
-  "homepage": "https://github.com/jimbob3806/buridan-sudoku#readme",
+  "homepage": "https://github.com/jimbob3806/buridan-sudoku/tree/master/generate-sudoku#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
@@ -32,7 +32,8 @@
     "inquirer": "^6.5.0",
     "minimist": "^1.2.0"
   },
+  "preferGlobal": true,
   "bin": {
-    "buridan-sudoku": "./index.js"
+    "generate-sudoku": "./index.js"
   }
 }
