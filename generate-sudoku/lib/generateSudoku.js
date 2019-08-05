@@ -52,14 +52,12 @@ const _generatePuzzle = (seed, solution) => {
     // Return variables for array destructure by generateSudoku
     return [puzzleString, puzzleArray]
 }
-const _gradePuzzle = (puzzle, sampleSize, populationMean, populationStdDev) => {
-    const treeSizeStats = treeSize(puzzle, sampleSize)
-    const meanTreeSize = treeSizeStats.mean
-    const stdDevTreeSize = treeSizeStats.stdDev
+const _gradePuzzle = (puzzle, sampleSize) => {
+    const { mean, stdDev } = treeSize(puzzle, sampleSize)
     const puzzleGrade = 
-        gradePuzzle(meanTreeSize)
+        gradePuzzle(mean)
     // Return variables for array destructure by generateSudoku
-    return [meanTreeSize, stdDevTreeSize, puzzleGrade]
+    return [mean, stdDev, puzzleGrade]
 }
 
 const generateSudoku = (
@@ -77,9 +75,7 @@ const generateSudoku = (
     const [puzzleString, puzzleArray] = _generatePuzzle(seed, solutionArray)
     const [meanTreeSize, stdDevTreeSize, puzzleGrade] = _gradePuzzle(
         puzzleArray, 
-        treeSizeSampleSize, 
-        populationMeanTreeSize, 
-        populationStdDevTreeSize
+        treeSizeSampleSize
     )
     const timeEnd = process.hrtime()[0]
     return {
