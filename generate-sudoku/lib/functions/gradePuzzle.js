@@ -1,3 +1,6 @@
+// General imports
+const fs = require("fs")
+
 // Own imports
 const { solvePuzzle } = require("./solvePuzzle")
 const { sumArray } = require("../utils/sumArray")
@@ -10,14 +13,14 @@ const treeSize = (sudoku, sampleSize = 50) => {
     // run for a number of seconds given a large enough sample size - hence
     // storing only second data from process.hrtime()
     const timeStart = process.hrtime()[0]
-    let treeSizeArr = []
+    let treeSizeArray = []
     for (let x = 0; x < sampleSize; x ++) {
-        treeSizeArr.push(solvePuzzle([sudoku]).sumTreeSize)
+        treeSizeArray.push(solvePuzzle([sudoku]).sumTreeSize)
     }
-    const sum = sumArray(treeSizeArr)
+    const sum = sumArray(treeSizeArray)
     const mean = sum / sampleSize
     // Array of the squares of the deviations from the mean value
-    const squareDevMeanArr = treeSizeArr.map(value => {
+    const squareDevMeanArr = treeSizeArray.map(value => {
         return (mean - value) ** 2
     })
     // Sum of the square of the deviaitions from the mean
@@ -63,10 +66,16 @@ const treeSize = (sudoku, sampleSize = 50) => {
 // a sudoku which has had the maximum number of clues removed using a random 
 // indexArray to remove cells (see ./generatePuzzle for more)
 const gradePuzzle = (treeSize, mean = 500, stdDev = 50) => {
+    const rawJSON = 
+        JSON.parse(fs.readFileSync(`${__dirname}/../benchmarks/log/raw.json`))
+    const rawSplit = rawJSON.treeSizeArray.reduce((acc, cur) => {
+        return cur > treeSize ? [acc[0], acc[1] + 1] : [acc[0] + 1, acc[1]]
+    }, [0, 0])
+    const correction = (rawSplit[0] / (rawSplit[0] + rawSplit[1])) + 0.5
     // Calculate standard deviations from mean
-    const stdDevFromMean = (treeSize - mean) / stdDev
+    const stdDevFromMean = (treeSize - mean) / (stdDev * correction)
     // Calculate grade as above
-    const grade = 1000 / (1 + 2 ** (- 1.6 * stdDevFromMean))
+    const grade = 1000 / (1 + 2 ** (- 1.6 * stdDevFromMean * correction))
     return Math.round(grade)
 }
 

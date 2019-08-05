@@ -103,32 +103,34 @@ const logBenchmark = sampleSize => {
     return updatePopulation(sampleSize, sum, sumSquares)
 }
 
+// CLI EXECUTABLE FUNCTION
 const batchBenchmark = (
-    batchSize, 
-    batchesRemaining, 
+    batchSize = 10, 
+    batchesRemaining = 10, 
     startTime = process.hrtime()[0]
 ) => {
     if (batchesRemaining <= 1) {
-        console.log(`1 BATCH REMAINING`)
+        console.log(`1 Batch remaining`)
         logBenchmark(batchSize)
         const populationJSON = 
             JSON.parse(fs.readFileSync(`${__dirname}/log/population.json`))
         const endTime = process.hrtime()[0]
-        const message = `BENCHMARK COMPLETED IN ${endTime - startTime} SECONDS
-NEW POPULATION SUMMARY STATISTICS:`
+        const message = `Benchmark completed in ${endTime - startTime} seconds
+new population summary statistics:`
         console.log(message)
         return console.log(populationJSON)
     } else {
         timeRemaining = 
             batchSize * batchesRemaining * systemJSON.averageTime
-        console.log(`STARTED BATCH AT ${Date()}
-${batchesRemaining} BATCHES REMAINING
-ESTIMATED TIME REMAINING: ${timeRemaining} SECONDS`)
+        console.log(`Started batch at ${Date()}
+${batchesRemaining} batches remaining
+Estimated time remaining: ${timeRemaining} seconds`)
         logBenchmark(batchSize)
         return batchBenchmark(batchSize, batchesRemaining - 1, startTime)
     }
 }
 
+// Exports
 module.exports = {
     populationBenchmark: populationBenchmark,
     batchBenchmark: batchBenchmark

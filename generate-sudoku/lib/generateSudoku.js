@@ -1,3 +1,6 @@
+// General imports
+const fs = require("fs")
+
 // Own imports
 const { generateSolution } = require("./functions/generateSolution")
 const { generatePuzzle } = require("./functions/generatePuzzle")
@@ -98,7 +101,45 @@ const generateSudoku = (
     }
 }
 
+const batchGenerate = (puzzlesRemaining, seed, fields, path = null) => {
+    // batchGenerate always called WITHOUT path, so if path is null, then the
+    // destination file for sudokus generated may be assumed to not exist, as
+    // each file is unique to number of sudokus, inital seed, and date executed
+    if (!path) {
+        const newFilename = 
+            `${puzzlesRemaining}_${seed}_${new Date().getTime()}.json`
+        const newPath = `${__dirname}/../out/${newFilename}`
+        const sudokuData = {
+            sudokus: []
+        }
+        const sudokuJSON = JSON.stringify(sudokuData)
+        // create the destination file for sudokus
+        fs.writeFileSync(newPath, sudokuJSON)
+        // Continue with function execution with newPath populated...
+        return batchGenerate(puzzlesRemaining, seed, fields, newPath)
+    } else if (puzzlesRemaining <= 0) {
+        return
+    } else {
+        const currentSudokus = JSON.parse(fs.readFileSync(path)).sudokus
+        const newSudokuVerbose = generateSudoku(seed)
+        // Populate a new object with only the fields requested by the cli
+        const newSudokuObject = {}
+        Object.keys(newSudokuVerbose).map(key => {
+            if (fields.includes(`${key}`)) {
+                newSudokuObject[key] = newSudokuVerbose[key]
+            }
+        })
+        const sudokuData = {
+            sudokus: [...currentSudokus, newSudokuObject]
+        }
+        const sudokuJSON = JSON.stringify(sudokuData)
+        fs.writeFileSync(path, sudokuJSON)
+        return batchGenerate(puzzlesRemaining - 1, seed + 1, fields, path)
+    }
+}
+
 // Exports
 module.exports = {
-    generateSudoku: generateSudoku
+    generateSudoku: generateSudoku,
+    batchGenerate:  batchGenerate
 }
