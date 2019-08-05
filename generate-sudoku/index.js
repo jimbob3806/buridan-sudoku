@@ -31,7 +31,7 @@ const {
 } = require("./cli/inquirerQus")
 
 // Functions
-const _cliBody = async () => {
+const cliBody = async () => {
     const choice = await inquirer.prompt(primaryQuestion)
     let choiceOptions
     switch (choice.PRIMARY_QUESTION) {
@@ -39,41 +39,48 @@ const _cliBody = async () => {
             choiceOptions = {
                 FUNCTION: systemBenchmark,
                 ARGS: await inquirer.prompt(systemBenchmarkQuestion),
-                CONFIRM: await inquirer.prompt(confirm("Are you sure?"))
+                ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break
         case ("BENCH_POP"):
             choiceOptions = {
                 FUNCTION: batchBenchmark,
                 ARGS: await inquirer.prompt(populationBenchmarkQuestion),
-                CONFIRM: await inquirer.prompt(confirm("Are you sure?"))
+                ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break
         case ("GEN_SUDOKU"):
             choiceOptions = {
                 FUNCTION: batchGenerate,
                 ARGS: await inquirer.prompt(generateSudokuQuestion),
-                CONFIRM: await inquirer.prompt(confirm("Are you sure?"))
+                ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break
         default:
-            console.log(`${divider}
-Thanks for stopping by`)
-            _closeCli()
             break
     }
     if (choiceOptions && choiceOptions.CONFIRM) {
         choiceOptions.FUNCTION(...Object.values(choiceOptions.ARGS))
-        console.log(`Your results are displayed above... Anything else?`)
-        return _cliBody()
+        console.log(`
+Your results are displayed above... Anything else?
+        `)
+        return cliBody()
+    } else if (choiceOptions) {
+        console.log(`
+${divider}
+Can't make your mind up? Let's start again
+        `)
+        return cliBody()
     } else {
-        console.log(`${divider}
-Can't make your mind up? Let's start again`)
-        return _cliBody()
-    } 
+        console.log(`
+${divider}
+Thanks for stopping by
+        `)
+        return closeCli()
+    }
 }
 
-const _runCli = () => {
+const runCli = () => {
     // Initiate run.json with default values, ensuring that it is clean after
     // the last use
     fs.writeFileSync(`${__dirname}/cli/run.json`, defaultRunJSON)
@@ -81,9 +88,9 @@ const _runCli = () => {
     // completes
     clear()
     banner()
-    _cliBody()
+    cliBody()
 }
-const _closeCli = () => {
+const closeCli = () => {
     // Clean up run.json with default values
     fs.writeFileSync(`${__dirname}/cli/run.json`, defaultRunJSON)
     // Exit with no error - process.exit is convenient for terminating the
@@ -93,4 +100,4 @@ const _closeCli = () => {
 }
 
 // Launch the CLI
-_runCli()
+runCli()

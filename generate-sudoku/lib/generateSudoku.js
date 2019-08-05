@@ -57,7 +57,7 @@ const _gradePuzzle = (puzzle, sampleSize, populationMean, populationStdDev) => {
     const meanTreeSize = treeSizeStats.mean
     const stdDevTreeSize = treeSizeStats.stdDev
     const puzzleGrade = 
-        gradePuzzle(meanTreeSize, populationMean, populationStdDev)
+        gradePuzzle(meanTreeSize)
     // Return variables for array destructure by generateSudoku
     return [meanTreeSize, stdDevTreeSize, puzzleGrade]
 }

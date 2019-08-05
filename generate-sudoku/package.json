@@ -1,6 +1,6 @@
 {
   "name": "generate-sudoku",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A sudoku generator, which grades resultant puzzles based on the overall \"entropy\" of the sudoku.",
   "main": "index.js",
   "scripts": {

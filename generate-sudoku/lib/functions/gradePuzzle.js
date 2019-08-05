@@ -38,6 +38,9 @@ const treeSize = (sudoku, sampleSize = 50) => {
     }
 }
 
+// gradePuzzleNormal is a depracted grading function used in v1.x.x of the cli
+// it is based on the assumption that treeSizes are normally distributed, which
+// has been found NOT to be the case on a sample of 2000 generated sudokus
 // Produce a grade for a puzzle of a given treeSize. Resultant grade is from 
 // 1-1000 where:
 //      * 1-200 is EASY PEASY / VERY EASY
@@ -65,17 +68,48 @@ const treeSize = (sudoku, sampleSize = 50) => {
 // the difficulty of sudoku puzzles being roughly normally distributed given
 // a sudoku which has had the maximum number of clues removed using a random 
 // indexArray to remove cells (see ./generatePuzzle for more)
-const gradePuzzle = (treeSize, mean = 500, stdDev = 50) => {
-    const rawJSON = 
-        JSON.parse(fs.readFileSync(`${__dirname}/../benchmarks/log/raw.json`))
-    const rawSplit = rawJSON.treeSizeArray.reduce((acc, cur) => {
-        return cur > treeSize ? [acc[0], acc[1] + 1] : [acc[0] + 1, acc[1]]
-    }, [0, 0])
-    const correction = (rawSplit[0] / (rawSplit[0] + rawSplit[1])) + 0.5
-    // Calculate standard deviations from mean
-    const stdDevFromMean = (treeSize - mean) / (stdDev * correction)
-    // Calculate grade as above
-    const grade = 1000 / (1 + 2 ** (- 1.6 * stdDevFromMean * correction))
+// const gradePuzzleNormal = (treeSize, mean = 500, stdDev = 50) => {
+//     // Calculate standard deviations from mean
+//     const stdDevFromMean = (treeSize - mean) / (stdDev)
+//     // Calculate grade as above
+//     const grade = 1000 / (1 + 2 ** (- 1.6 * stdDevFromMean))
+//     return Math.round(grade)
+// }
+
+// Produce a grade for a puzzle of a given treeSize. Resultant grade is from 
+// 1-1000 where:
+//      * 1-200 is EASY PEASY / VERY EASY
+//      * 201-400 is PEDESTRIAN / EASY
+//      * 401-600 is AVERAGE JOE / MODERATE
+//      * 601-800 is MILDLY INTIMIDATING / HARD
+//      * 801-1000 is POSITIVELY NIGHTMARISH / VERY HARD
+// If "x" is the number of mean treeSize from the mean for a given sudoku, then 
+// the difficulty, "y" may be calulated by using the following sigmoid-like 
+// function:
+//      y = (1000 / (1 + 3.5 ** (- 0.0055 * (x - 220)))) - 175
+// This distribution produces the following results:
+//      * VERY EASY PUZZLES are of treeSize 0-146, and form about 13.5% of the
+//      population
+//      * EASY PUZZLES are of treeSize 147-264, and form about 25.6% of the
+//      population
+//      * MODERATE PUZZLES are of treeSize 265-399, and form about 22.8% of the
+//      population
+//      * HARD PUZZLES are of treeSize 400-754, and form about 23.1% of the
+//      population
+//      * VERY HARD PUZZLES are of treeSize 755 and up, and form about 15.0% of 
+//       the population
+// The grading function, and the numbers above (relating to how much of the
+// population each difficulty level accounts for), were found by playing with
+// sigmoid functions on a graphing calculator, until a function was found that 
+// produced 3 approximately equally sized "mid difficulty" bands, and 2
+// approximately equally sized "tail difficulty" bands, based on the treeSizes
+// of a sample population of 2000 sudoku puzzles (looking through the treeSizes
+// to find how many puzzles were between each set of values above - for example,
+// about 13.5% of the treeSizes were 146 or less, and 146 maps to 200 in the
+// grading function)
+const gradePuzzle = treeSize => {
+    // Calculate grade as explained above (explicit brackets used for clarity)
+    const grade = (1000 / (1 + 3.5 ** (- 0.0055 * (treeSize - 220)))) - 175
     return Math.round(grade)
 }
 
