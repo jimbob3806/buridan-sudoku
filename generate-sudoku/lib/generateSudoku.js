@@ -7,7 +7,8 @@ const { generatePuzzle } = require("./functions/generatePuzzle")
 const { treeSize, gradePuzzle } = require("./functions/gradePuzzle")
 const { shuffleArray, shuffleIndexArray } = require("./utils/shuffleArray")
 const { emptySudoku } = require("./utils/emptySudoku")
-const { encode } = require("./functions/sudokuEncode")
+const { encode } = require("./utils/sudokuEncode")
+const { cliConfig } = require("../cli/config/cli")
 const packageJSON = require("../package.json")
 const populationJSON = require("./benchmarks/log/population.json")
 
@@ -54,8 +55,7 @@ const _generatePuzzle = (seed, solution) => {
 }
 const _gradePuzzle = (puzzle, sampleSize) => {
     const { mean, stdDev } = treeSize(puzzle, sampleSize)
-    const puzzleGrade = 
-        gradePuzzle(mean)
+    const puzzleGrade = gradePuzzle(mean)
     // Return variables for array destructure by generateSudoku
     return [mean, stdDev, puzzleGrade]
 }
@@ -63,7 +63,7 @@ const _gradePuzzle = (puzzle, sampleSize) => {
 const generateSudoku = (
     seed = 1, 
     version = packageJSON.version,
-    treeSizeSampleSize = populationJSON.treeSizeSampleSize,
+    treeSizeSampleSize = cliConfig.get("gradingSampleSize"),
     populationMeanTreeSize = populationJSON.populationMeanTreeSize,
     populationStdDevTreeSize = populationJSON.populationStdDevTreeSize
 ) => {

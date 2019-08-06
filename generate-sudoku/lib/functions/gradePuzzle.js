@@ -2,13 +2,16 @@
 const fs = require("fs")
 
 // Own imports
-const { solvePuzzle } = require("./solvePuzzle")
+const { solvePuzzle, isUnique } = require("./solvePuzzle")
 const { sumArray } = require("../utils/sumArray")
+const { fetchPuzzles } = require("../utils/fetchPuzzles")
+const { cliConfig } = require("../../cli/config/cli")
+const { encode } = require("../utils/sudokuEncode")
 
 // Find treeSize of the sudoku puzzle, and return relevant summary statistics -
 // treeSize or "entropy" of the puzzle may be used to calculate the difficulty 
 // of the puzzle
-const treeSize = (sudoku, sampleSize = 50) => {
+const treeSize = (sudoku, sampleSize = cliConfig.get("gradingSampleSize")) => {
     // Not interested in nanosecond performance, as the function is expected to
     // run for a number of seconds given a large enough sample size - hence
     // storing only second data from process.hrtime()
@@ -83,8 +86,49 @@ const gradePuzzle = treeSize => {
     return Math.round(grade)
 }
 
+// solves puzzles from a supplied file, and writes results back to that file
+const batchGradePuzzle = file => {
+    const puzzles = fetchPuzzles(file)
+    // Find solutions to puzzles, returning message if there is no unique 
+    // solution
+    const solutions = puzzles.map(puzzle => {
+        const solutionArray = solvePuzzle([puzzle]).puzzles
+        return isUnique(solutionArray) ? solutionArray[0] : "MULTIPLE SOLUTIONS"
+    })
+    // Calculate puzzle grade, as long as there is a unique solution
+    const grades = solutions.map((solution, index) => {
+        return solution === "MULTIPLE SOLUTIONS" ? "MULTIPLE SOLUTIONS" :
+            gradePuzzle(treeSize(puzzles[index]).mean)
+    }) 
+    // Create comprehensive grade and solution object for each requested puzzle
+    // (may as well pass solution alongside grade, as solution must be 
+    // calculated anyway to see if puzzle has unique solution)
+    const solutionsData = {
+        puzzles: solutions.map((solution, index) => {
+            return {
+                puzzleArray: puzzles[index],
+                puzzleString: puzzles[index].join(""),
+                encodedSudoku: solution === "MULTIPLE SOLUTIONS" ? null :
+                    encode(solution.join(""), puzzles[index].join("")),
+                puzzleGrade: grades[index],
+                solution: {
+                    // Will obviously return "MULTIPLE SOLUTIONS" automatically
+                    // if there were multiple solutions
+                    solutionArray: solution,
+                    solutionString: solution === "MULTIPLE SOLUTIONS" ? null :
+                        solution.join("")
+                }
+            }
+        })
+    }
+    // Write solutions back to original file
+    const solutionsJSON = JSON.stringify(solutionsData)
+    return fs.writeFileSync(file, solutionsJSON)
+}
+
 // Exports
 module.exports = {
     treeSize: treeSize,
-    gradePuzzle: gradePuzzle
+    gradePuzzle: gradePuzzle,
+    batchGradePuzzle: batchGradePuzzle
 }

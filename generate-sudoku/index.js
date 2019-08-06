@@ -8,13 +8,16 @@ const fs = require("fs")
 // Own imports
 const { batchGenerate } = require("./lib/generateSudoku")
 const { systemBenchmark } = require("./lib/benchmarks/system")
+const { batchGradePuzzle } = require("./lib/functions/gradePuzzle")
+const { batchSolvePuzzle } = require("./lib/functions/solvePuzzle")
+const { setConfig } = require("./cli/config/set")
 const {
     defaultRunJSON
-} = require("./cli/defaultRunJSON")
+} = require("./cli/config/defaultRunJSON")
 const { 
     divider,
     banner
-} = require("./cli/ui")
+} = require("./cli/utils/ui")
 const {
     primaryQuestion,
     generateSudokuQuestion,
@@ -25,12 +28,15 @@ const {
 
 // Functions
 const cliBody = async () => {
+    // Prompt user for their desired action
     const choice = await inquirer.prompt(primaryQuestion)
+    // Fetch desired arguments for user's desired action
     let choiceOptions
     switch (choice.PRIMARY_QUESTION) {
         case ("BENCH_SYS"):
             choiceOptions = {
                 FUNCTION: systemBenchmark,
+                ARGS: {},
                 ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break
@@ -41,22 +47,48 @@ const cliBody = async () => {
                 ...await inquirer.prompt(confirm("Are you sure?"))
             }
             break
+        case ("SOLVE_PUZZLE"):
+            choiceOptions = {
+                FUNCTION: batchSolvePuzzle,
+                ARGS: await inquirer.prompt(solvePuzzleQuestion),
+                ...await inquirer.prompt(confirm("Are you sure?"))
+            }
+            break
+        case ("GRADE_PUZZLE"):
+            choiceOptions = {
+                FUNCTION: batchGradePuzzle,
+                ARGS: await inquirer.prompt(gradePuzzleQuestion),
+                ...await inquirer.prompt(confirm("Are you sure?"))
+            }
+            break
+        case ("CHANGE_CONFIG"):
+            choiceOptions = {
+                FUNCTION: setConfig,
+                ARGS: await inquirer.prompt(generateSudokuQuestion),
+                ...await inquirer.prompt(confirm("Are you sure?"))
+            }
+            break
         default:
             break
     }
+    // Execute user's desired action
     if (choiceOptions && choiceOptions.CONFIRM) {
+        // user has confirmed actions - run requested functions, with requested
+        // arguments, then ask for more input by restarting cli flow
         choiceOptions.FUNCTION(...Object.values(choiceOptions.ARGS))
         console.log(`
 Your results are displayed above... Anything else?
         `)
         return cliBody()
     } else if (choiceOptions) {
+        // user did not confirm their actions - start the cli flow again
         console.log(`
 ${divider}
 Can't make your mind up? Let's start again
         `)
         return cliBody()
     } else {
+        // user has requested to leave the cli - close the cli
         console.log(`
 ${divider}
 Thanks for stopping by
@@ -75,6 +107,7 @@ const runCli = () => {
     banner()
     cliBody()
 }
+
 const closeCli = () => {
     // Clean up run.json with default values
     fs.writeFileSync(`${__dirname}/cli/run.json`, defaultRunJSON)

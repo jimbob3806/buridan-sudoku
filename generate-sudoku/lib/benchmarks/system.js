@@ -4,8 +4,8 @@ const fs = require("fs")
 // Own imports
 const { populationBenchmark } = require("./population")
 const { pushRunJSON } = require("../../cli/pushRunJSON")
-const { estTime } = require("../../cli/estTime")
-const { cliConfig } = require("../../cli/config")
+const { estTime } = require("../../cli/utils/estTime")
+const { cliConfig } = require("../../cli/config/cli")
 const populationJSON = require("./log/population.json")
 
 // CLI EXECUTABLE FUNCTION

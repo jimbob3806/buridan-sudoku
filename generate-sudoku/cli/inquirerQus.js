@@ -1,5 +1,5 @@
 // Own imports
-const { cliConfig } = require("./config")
+const { cliConfig } = require("./config/cli")
 
 const primaryChoices = [
     {
@@ -14,12 +14,12 @@ const primaryChoices = [
     },
     {
         name: "Solve some sudokus",
-        value: "SOLVE_SUDOKU",
+        value: "SOLVE_PUZZLE",
         short: "Solve sudokus"
     },
     {
         name: "Grade some sudokus",
-        value: "GRADE_SUDOKU",
+        value: "GRADE_PUZZLE",
         short: "Grade sudokus"
     },
     {
@@ -145,7 +145,7 @@ const generateSudokuQuestion = [
         default: cliConfig.get("sudokuFields")
     },
     {
-        message: "Relative path to dir. for sudokus JSON file to be saved",
+        message: "Relative path to dir. for sudokus JSON file to be saved?",
         name: "PATH",
         type: "input",
         default: cliConfig.get("generateSudokuPath")
@@ -153,7 +153,7 @@ const generateSudokuQuestion = [
 ]
 const solvePuzzleQuestion = [
     {
-        message: "Relative path to JSON file containing puzzles to be solved",
+        message: "Relative path to JSON file containing puzzles to be solved?",
         name: "PATH",
         type: "input",
         default: cliConfig.get("solvePuzzlePath")
@@ -161,7 +161,7 @@ const solvePuzzleQuestion = [
 ]
 const gradePuzzleQuestion = [
     {
-        message: "Relative path to JSON file containing puzzles to be graded",
+        message: "Relative path to JSON file containing puzzles to be graded?",
         name: "PATH",
         type: "input",
         default: cliConfig.get("gradePuzzlePath")

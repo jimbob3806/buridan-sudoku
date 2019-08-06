@@ -6,7 +6,7 @@ const {
     progressBar,
     bottomUi,
     divider
-} = require("./ui")
+} = require("./utils/ui")
 
 // Function
 const renderFunction = () => {
