@@ -108,14 +108,16 @@ const batchGradePuzzle = file => {
             return {
                 puzzleArray: puzzles[index],
                 puzzleString: puzzles[index].join(""),
-                encodedSudoku: solution === "MULTIPLE SOLUTIONS" ? null :
+                encodedSudoku: solution === "MULTIPLE SOLUTIONS" ? 
+                    "MULTIPLE SOLUTIONS" :
                     encode(solution.join(""), puzzles[index].join("")),
                 puzzleGrade: grades[index],
                 solution: {
                     // Will obviously return "MULTIPLE SOLUTIONS" automatically
                     // if there were multiple solutions
                     solutionArray: solution,
-                    solutionString: solution === "MULTIPLE SOLUTIONS" ? null :
+                    solutionString: solution === "MULTIPLE SOLUTIONS" ? 
+                        "MULTIPLE SOLUTIONS" :
                         solution.join("")
                 }
             }
