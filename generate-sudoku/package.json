@@ -30,7 +30,7 @@
     "configstore": "^5.0.0",
     "figlet": "^1.2.3",
     "inquirer": "^6.5.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.2"
   },
   "preferGlobal": true,
   "bin": {
